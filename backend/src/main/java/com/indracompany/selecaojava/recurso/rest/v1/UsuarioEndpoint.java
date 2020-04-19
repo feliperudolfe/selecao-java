@@ -2,9 +2,6 @@ package com.indracompany.selecaojava.recurso.rest.v1;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,8 +44,6 @@ public class UsuarioEndpoint implements Endpoint {
 	private UsuarioService service;
 
 	@PostMapping
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
 	@ApiOperation(
 		value = "Registrar usuário",
 		notes = "Registrar usuário no sistema")
@@ -77,8 +72,6 @@ public class UsuarioEndpoint implements Endpoint {
 	}
 
 	@GetMapping
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
 	@ApiOperation(
 		value = "Get authenticated user",
 		notes = "Get authenticated user in the system")

@@ -32,10 +32,10 @@ public class VendaMapper {
 		retorno.setDistribuidora(DistribuidoraMapper.toEntidade(cont, linha));
 		retorno.setProduto(ProdutoMapper.toEntidade(cont, linha));
 
-		Assert.notNull(retorno.getDataColeta(), Msg.getMessage(MsgEnum.MSG_IMP_CSV, cont, "Data da coleta"));
-		Assert.notNull(retorno.getValorVenda(), Msg.getMessage(MsgEnum.MSG_IMP_CSV, cont, "Valor da venda"));
-		Assert.notNull(retorno.getDistribuidora(), Msg.getMessage(MsgEnum.MSG_IMP_CSV,cont, "Distribuidora"));
-		Assert.notNull(retorno.getProduto(), Msg.getMessage(MsgEnum.MSG_IMP_CSV, cont, "Produto"));
+		Assert.notNull(retorno.getDataColeta(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "Data da coleta"));
+		Assert.notNull(retorno.getValorVenda(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "Valor da venda"));
+		Assert.notNull(retorno.getDistribuidora(), Msg.get(MsgEnum.MSG_IMP_CSV,cont, "Distribuidora"));
+		Assert.notNull(retorno.getProduto(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "Produto"));
 
 		return retorno;
 	}

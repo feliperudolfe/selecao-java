@@ -1,0 +1,45 @@
+<div>
+
+  <h3 class="mt-5 title-page" *ngIf="!venda" >
+    <span class="title-span"> {{'button.register' | translate}} {{'private.venda.title' | translate}}</span>
+  </h3>
+
+  <h3 class="mt-5 title-page" *ngIf="venda" >
+    <span class="title-span"> {{'button.edit' | translate}} {{'private.venda.title' | translate}}</span>
+  </h3>
+
+  <div class="row">
+    <div class="col-lg-12">
+
+      <form id="register-project-id" [formGroup]="form" (submit)="register()" novalidate>
+
+        <div class="form-row">
+
+			<div class="col-md-2 mb-3">
+			  <label for="validationDefault02">{{'private.venda.dataColeta' | translate}}:</label>
+			  <span class="required"> *</span>
+			  <input id="dataColeta" formControlName="dataColeta" type="text" class="form-control" required>
+			</div>
+
+          <div class="col-md-2 mb-3">
+            <label for="name">{{'private.venda.valorVenda' | translate}}:</label>
+            <span class="required"> *</span>
+            <input id="valorVenda" formControlName="valorVenda" type="number" class="form-control" required>
+		  </div>
+
+		  <div class="col-md-2 mb-3">
+            <label for="name">{{'private.venda.valorCompra' | translate}}:</label>
+            <span class="required"> *</span>
+            <input id="valorCompra" formControlName="valorCompra" type="number" class="form-control" required>
+          </div>
+
+        </div>
+
+        <button class="btn btn-primary float-right" type="submit" >{{(project) ? ('button.save' | translate) : ('button.register' | translate)}}</button>
+        <button [routerLink]="['/private/historico-precos']" routerLinkActive="router-link-active"  class="btn btn-danger float-right" type="button" >{{'button.cancel' | translate}}</button>
+      </form>
+
+    </div>
+  </div>
+
+</div>

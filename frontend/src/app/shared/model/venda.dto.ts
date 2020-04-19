@@ -3,7 +3,7 @@ import { DistribuidoraDTO } from './distribuidora.dto';
 
 export interface VendaDTO {
   codigo?: number;
-  dataColeta: string;
+  dataColeta: any;
   valorVenda: number;
   valorCompra: number;
   produto?: ProdutoDTO;

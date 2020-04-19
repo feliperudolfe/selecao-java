@@ -8,6 +8,7 @@ public enum MsgEnum {
 
 	MSG_SUCESSO,
 	MSG_ERRO_PADRAO,
+	MSG_REG_NAO_ENCONTRADO,
 	MSG_IMP_CSV,
 
 	MSG001,

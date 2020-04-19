@@ -19,7 +19,7 @@ public class Msg {
 
 	}
 
-	public static String getMessage(MsgEnum msgEnum, Object... args) {
+	public static String get(MsgEnum msgEnum, Object... args) {
 		String mensagem = get(msgEnum);
 		if (args.length > 0) {
 			mensagem = MessageFormat.format(mensagem, args);

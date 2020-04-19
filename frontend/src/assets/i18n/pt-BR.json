@@ -8,6 +8,9 @@
     "text": {
       "delete": {
         "venda": "Deseja remover esta venda?"
+      },
+      "atualizar": {
+        "venda": "Deseja atualizar esta venda?"
       }
     }
   },

@@ -2,9 +2,7 @@ package com.indracompany.selecaojava.persistencia.modelo.dto;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.indracompany.comuns.converter.DateDeserializer;
 import com.indracompany.comuns.converter.DateSerializer;
 import com.indracompany.comuns.modelo.dto.DTO;
 import com.indracompany.selecaojava.persistencia.modelo.entidade.Distribuidora;
@@ -24,7 +22,6 @@ public class VendaDTO extends DTO {
 	private Long codigo;
 
 	@JsonSerialize(using = DateSerializer.class)
-	@JsonDeserialize(using = DateDeserializer.class)
 	private Date dataColeta;
 
 	private Double valorVenda;

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -70,6 +71,15 @@ public class RestResponseExceptionHandler extends ResponseEntityExceptionHandler
 			WebRequest request) {
 
 		return tratarBindException(ex, request);
+	}
+
+	@Override
+	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
+
+		LOG.error(ex.getMessage(), ex);
+
+		return super.handleHttpMessageNotReadable(ex, headers, status, request);
 	}
 
 	private ResponseEntity<Object> tratarMissingServletRequestParameterException(

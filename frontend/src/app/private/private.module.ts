@@ -12,12 +12,14 @@ import { GroupByPipe } from '../shared/pipe/group-by.pipe';
 
 import { FormsModule } from '@angular/forms';
 import { HistoricoPrecosComponent } from './historico-precos/historico-precos.component';
+import { EditarVendaComponent } from './historico-precos/editar-venda/editar-venda.component';
 
 @NgModule({
   declarations: [
     PrivateTemplateComponent,
     GroupByPipe,
-    HistoricoPrecosComponent
+    HistoricoPrecosComponent,
+    EditarVendaComponent
   ],
   imports: [
     CommonModule,

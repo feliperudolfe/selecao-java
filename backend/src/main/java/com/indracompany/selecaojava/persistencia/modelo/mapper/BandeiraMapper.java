@@ -23,7 +23,7 @@ public class BandeiraMapper {
 		Bandeira retorno = new Bandeira();
 		retorno.setNome(linha.get(BANDEIRA_LINHA));
 
-		Assert.notNull(retorno.getNome(), Msg.getMessage(MsgEnum.MSG_IMP_CSV, cont, "Nome da bandeira"));
+		Assert.notNull(retorno.getNome(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "Nome da bandeira"));
 
 		return retorno;
 	}

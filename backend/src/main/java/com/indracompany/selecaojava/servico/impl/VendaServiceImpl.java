@@ -1,8 +1,11 @@
 package com.indracompany.selecaojava.servico.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.PersistenceException;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +16,7 @@ import com.indracompany.comuns.tratamento.NegocioException;
 import com.indracompany.selecaojava.app.mensagem.Msg;
 import com.indracompany.selecaojava.app.mensagem.MsgEnum;
 import com.indracompany.selecaojava.persistencia.dao.VendaDAO;
+import com.indracompany.selecaojava.persistencia.modelo.dto.VendaDTO;
 import com.indracompany.selecaojava.persistencia.modelo.dto.VendaPaginadorDTO;
 import com.indracompany.selecaojava.persistencia.modelo.entidade.Distribuidora;
 import com.indracompany.selecaojava.persistencia.modelo.entidade.Produto;
@@ -113,6 +117,50 @@ public class VendaServiceImpl implements VendaService {
 		try {
 
 			this.repository.deleteById(codigo);
+
+		} catch (PersistenceException e) {
+			LOG.error(e.getMessage(), e);
+			throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO));
+		}
+	}
+
+	@Override
+	public VendaDTO obterPorCodigo(@Valid @NotNull Long codigo) {
+
+		VendaDTO retorno = null;
+		try {
+
+			Optional<Venda> opt = this.repository.findById(codigo);
+			if (!opt.isPresent()) {
+				throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO, "Venda"));
+			}
+
+			retorno = opt.get().toDTO(VendaDTO.class);
+
+		} catch (PersistenceException e) {
+			LOG.error(e.getMessage(), e);
+			throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO));
+		}
+
+		return retorno;
+	}
+
+	@Override
+	public void atualizar(Long codigo, VendaDTO vendaDTO) {
+
+		try {
+
+			Optional<Venda> opt = this.repository.findById(codigo);
+			if (!opt.isPresent()) {
+				throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO, "Venda"));
+			}
+
+			Venda vendaAtual = opt.get();
+			vendaAtual.setDataColeta(vendaDTO.getDataColeta());
+			vendaAtual.setValorVenda(vendaDTO.getValorVenda());
+			vendaAtual.setValorCompra(vendaDTO.getValorCompra());
+
+			this.repository.save(vendaAtual);
 
 		} catch (PersistenceException e) {
 			LOG.error(e.getMessage(), e);

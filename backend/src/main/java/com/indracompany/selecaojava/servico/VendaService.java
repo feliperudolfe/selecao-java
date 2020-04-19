@@ -3,9 +3,12 @@ package com.indracompany.selecaojava.servico;
 import java.util.List;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.scheduling.annotation.Async;
 
+import com.indracompany.selecaojava.persistencia.modelo.dto.VendaDTO;
 import com.indracompany.selecaojava.persistencia.modelo.dto.VendaPaginadorDTO;
 import com.indracompany.selecaojava.persistencia.modelo.entidade.Venda;
 
@@ -53,5 +56,24 @@ public interface VendaService {
 	 * @param 	codigo
 	 */
 	void remover(Long codigo);
+
+	/**
+	 * Serviço para obter venda por código
+	 *
+	 * @author 	Felipe Rudolfe Carvalho Pinheiro
+	 * @since   19 de abr de 2020
+	 * @param 	codigo
+	 */
+	VendaDTO obterPorCodigo(@Valid @NotNull Long codigo);
+
+	/**
+	 * Serviço para atualizar venda
+	 *
+	 * @author 	Felipe Rudolfe Carvalho Pinheiro
+	 * @since   19 de abr de 2020
+	 * @param 	codigo
+	 * @param 	vendaDTO
+	 */
+	void atualizar(Long codigo, VendaDTO vendaDTO);
 
 }

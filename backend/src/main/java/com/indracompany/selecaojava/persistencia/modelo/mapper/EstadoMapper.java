@@ -26,8 +26,8 @@ public class EstadoMapper {
 		retorno.setCodigo(linha.get(SIGLA_ESTADO_LINHA));
 		retorno.setRegiao(RegiaoEnum.getPorSigla(linha.get(REGIAO_LINHA)));
 
-		Assert.notNull(retorno.getCodigo(), Msg.getMessage(MsgEnum.MSG_IMP_CSV, cont, "Código UF"));
-		Assert.notNull(retorno.getRegiao(), Msg.getMessage(MsgEnum.MSG_IMP_CSV, cont, "Região UF"));
+		Assert.notNull(retorno.getCodigo(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "Código UF"));
+		Assert.notNull(retorno.getRegiao(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "Região UF"));
 
 		return retorno;
 	}

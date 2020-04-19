@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HistoricoPrecoService } from 'src/app/shared/services/historico-preco.service';
 import { HistoricoPrecoPaginatorDTO } from 'src/app/shared/model/venda.paginator.dto';
+import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-historico-precos',
@@ -11,19 +13,37 @@ export class HistoricoPrecosComponent implements OnInit {
 
   paginator: HistoricoPrecoPaginatorDTO;
 
-  constructor(private historicoPrecoService: HistoricoPrecoService) { }
+  constructor(
+    private route: Router,
+    private location: Location,
+    private router: ActivatedRoute,
+    private historicoPrecoService: HistoricoPrecoService) { }
 
   ngOnInit() {
+
+    this.router.queryParams.subscribe((params) => {
+      const pageatual = params.currentPage;
+      if (pageatual) {
+        this.paginator = {
+          currentPage: pageatual
+        }
+      }
+    });
+
     this.doPaginator();
   }
 
   private doPaginator() {
+
     this.historicoPrecoService.listar(this.paginator)
       .subscribe((result) => {
         if (result) {
           this.paginator = result;
         }
       });
+    if (this.paginator && this.paginator.currentPage) {
+      this.location.go(`historico-precos?currentPage=${(this.paginator.currentPage + 1)}`);
+    }
   }
 
   isMinlength() {

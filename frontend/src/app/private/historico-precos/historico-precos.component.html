@@ -22,6 +22,7 @@
 							<th scope="col">{{'private.historico.table.valorCompra' | translate}}</th>
 							<th scope="col">{{'private.historico.table.produto' | translate}}</th>
 							<th scope="col">{{'private.historico.table.bandeira' | translate}}</th>
+							<th scope="col">{{'private.historico.table.cnpj' | translate}}</th>
 							<th scope="col">{{'private.historico.table.distribuidora' | translate}}</th>
 							<th scope="col">#</th>
 						</tr>
@@ -33,6 +34,7 @@
 							<td>{{item.valorCompra}}</td>
 							<td>{{item.produto.nome}}</td>
 							<td>{{item.produto.bandeira.nome}}</td>
+							<td>{{item.distribuidora.cnpj}}</td>
 							<td>{{item.distribuidora.nome}}</td>
 							<td>
 
@@ -68,7 +70,7 @@
 			</div>
 
 			<nav aria-label="Page navigation example" *ngIf="isPagination()">
-				<ul class="pagination justify-content-end">
+				<ul class="pagination"> <!--justify-content-end-->
 
 					<li class="page-item" [ngClass]="isMinlength() ? 'disabled' : ''">
 						<a (click)="previous()" class="page-link acao" tabindex="-1">{{'button.previous' | translate}}</a>

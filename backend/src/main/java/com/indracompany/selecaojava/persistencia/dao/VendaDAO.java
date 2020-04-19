@@ -53,7 +53,7 @@ public class VendaDAO extends DAO {
 			query.where(predicados.toArray(new Predicate[predicados.size()]));
 		}
 
-		query.orderBy(builder.asc(root.get(DATA_COLETA)));
+		query.orderBy(builder.desc(root.get(DATA_COLETA)));
 
 		List<VendaDTO> result = getEntityManager()
 				.createQuery(query)

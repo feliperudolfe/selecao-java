@@ -101,6 +101,7 @@
         "produto": "Produto",
         "bandeira": "Bandeira",
         "distribuidora": "Distribuidora",
+        "cnpj": "CNPJ distribuidora",
         "registros": "registros"
       }
     }

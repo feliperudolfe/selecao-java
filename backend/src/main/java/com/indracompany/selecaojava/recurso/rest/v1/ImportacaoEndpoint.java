@@ -38,7 +38,7 @@ public class ImportacaoEndpoint implements Endpoint {
 
 		this.service.carregarArquivoCSV(file);
 
-		return criarResposta(new Resposta(new Mensagem(Mensagem.SUCESSO, Msg.getMessage(MsgEnum.MSG003))));
+		return criarResposta(new Resposta(new Mensagem(Mensagem.SUCESSO, Msg.get(MsgEnum.MSG003))));
 	}
 
 }

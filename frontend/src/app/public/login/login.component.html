@@ -1,0 +1,17 @@
+<div style="margin-top: 25%;" >
+
+	<form class="form-login" [formGroup]="form" (submit)="doLogin()" novalidate>
+
+		<h1 class="h3 mb-3 font-weight-normal">Login</h1>
+		
+		<label for="email" class="sr-only" >E-mail</label>
+		<input type="email" formControlName="email" id="email" class="form-control" placeholder="{{ 'public.login.email' | translate }}" style="margin-bottom: 4px;" autofocus>
+		
+		<label for="password" class="sr-only">Senha</label>
+		<input type="password" formControlName="senha" id="inputPassword" class="form-control" placeholder="{{ 'public.login.password' | translate }}" style="margin-bottom: 20px;" autofocus>
+		
+		<button type="submit" [disabled]="!form.valid" class="btn btn-lg btn-primary btn-block" >{{ 'public.login.access' | translate }}</button>
+	
+	</form>
+
+</div>

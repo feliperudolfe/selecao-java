@@ -12,4 +12,8 @@ import com.indracompany.selecaojava.persistencia.modelo.entidade.Usuario;
 @Repository
 public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 
+	Usuario findByEmail(String email);
+
+	Usuario findByEmailAndSenha(String email, String senha);
+
 }

@@ -14,13 +14,13 @@ public class Msg {
 
 	private Msg() {}
 
-	public static String getMessage(MsgEnum msgEnum) {
+	public static String get(MsgEnum msgEnum) {
 		return new String(RESOURCE_BUNDLE.getString(msgEnum.toString()).getBytes());
 
 	}
 
 	public static String getMessage(MsgEnum msgEnum, Object... args) {
-		String mensagem = getMessage(msgEnum);
+		String mensagem = get(msgEnum);
 		if (args.length > 0) {
 			mensagem = MessageFormat.format(mensagem, args);
 		}

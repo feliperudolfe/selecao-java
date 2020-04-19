@@ -47,7 +47,7 @@ public class DistribuidoraServiceImpl implements DistribuidoraService {
 
 		} catch (PersistenceException e) {
 			LOG.error(e.getMessage(), e);
-			throw new NegocioException(Msg.getMessage(MsgEnum.MSG_ERRO_PADRAO));
+			throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO));
 		}
 
 		return retorno;

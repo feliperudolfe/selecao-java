@@ -6,12 +6,17 @@ package com.indracompany.selecaojava.app.mensagem;
  */
 public enum MsgEnum {
 
+	MSG_SUCESSO,
 	MSG_ERRO_PADRAO,
 	MSG_IMP_CSV,
 
 	MSG001,
 	MSG002,
 	MSG003,
+	MSG004,
+	MSG005,
+	MSG006,
+	MSG007,
 
 	;
 

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -38,7 +39,7 @@ public class RestResponseExceptionHandler extends ResponseEntityExceptionHandler
 	protected ResponseEntity<Object> tratarNegocioException(NegocioException ex, WebRequest request) {
 
 		Resposta resposta = new Resposta(ex.getMensagens());
-		return handleExceptionInternal(ex, resposta, new HttpHeaders(), HttpStatus.CONFLICT, request);
+		return handleExceptionInternal(ex, resposta, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 
 	@ExceptionHandler(Exception.class)
@@ -46,8 +47,8 @@ public class RestResponseExceptionHandler extends ResponseEntityExceptionHandler
 
 		LOG.error(ex.getMessage(), ex);
 
-		Resposta resposta = new Resposta(null, new Mensagem(Mensagem.ERRO, Msg.getMessage(MsgEnum.MSG_ERRO_PADRAO)));
-		return handleExceptionInternal(ex, resposta, new HttpHeaders(), HttpStatus.CONFLICT, request);
+		Resposta resposta = new Resposta(null, new Mensagem(Mensagem.ERRO, Msg.get(MsgEnum.MSG_ERRO_PADRAO)));
+		return handleExceptionInternal(ex, resposta, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 
 	@Override
@@ -64,11 +65,26 @@ public class RestResponseExceptionHandler extends ResponseEntityExceptionHandler
 		return tratarMissingServletRequestParameterException(ex, request);
 	}
 
+	@Override
+	protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status,
+			WebRequest request) {
+
+		return tratarBindException(ex, request);
+	}
+
 	private ResponseEntity<Object> tratarMissingServletRequestParameterException(
 			MissingServletRequestParameterException ex, WebRequest request) {
 
 		Resposta resposta = new Resposta(new Mensagem(Mensagem.ALERTA, ex.getMessage()));
-		return handleExceptionInternal(ex, resposta, new HttpHeaders(), HttpStatus.CONFLICT, request);
+		return handleExceptionInternal(ex, resposta, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+	}
+
+	private ResponseEntity<Object> tratarBindException(BindException ex,  WebRequest request) {
+
+		BindingResult result = ex.getBindingResult();
+		List<org.springframework.validation.FieldError> fieldErrors = result.getFieldErrors();
+
+		return handleExceptionInternal(ex, processFieldErrors(fieldErrors), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 
 	private ResponseEntity<Object> tratarMethodArgumentNotValidException(MethodArgumentNotValidException ex,  WebRequest request) {
@@ -76,7 +92,7 @@ public class RestResponseExceptionHandler extends ResponseEntityExceptionHandler
 		BindingResult result = ex.getBindingResult();
 		List<org.springframework.validation.FieldError> fieldErrors = result.getFieldErrors();
 
-		return handleExceptionInternal(ex, processFieldErrors(fieldErrors), new HttpHeaders(), HttpStatus.CONFLICT, request);
+		return handleExceptionInternal(ex, processFieldErrors(fieldErrors), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 
 	private Resposta processFieldErrors(List<org.springframework.validation.FieldError> fieldErrors) {

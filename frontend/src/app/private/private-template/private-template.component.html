@@ -1,0 +1,58 @@
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
+
+<div class="menu" (click)="clickMenu()"> <span></span> </div>
+
+<nav id="nav" style="overflow:hidden;">
+  <ul class="main">
+    <li>
+      <a [routerLink]="['/private']" class="acao" (click)="clickMenuClose()">{{'private.menu.projects' | translate}}</a>
+    </li>
+    <li>
+      <a [routerLink]="['/private/configurations']" class="acao" (click)="clickMenuClose()">{{'private.menu.configurations' | translate}}</a>
+    </li>
+    <li>
+      <a [routerLink]="['']" class="acao" (click)="clickMenuClose(); doLogout()">{{'private.menu.exit' | translate}}</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="overlay"></div>
+
+<div (click)="clickMenuClose()">
+
+  <nav class="navbar navbar-expand navbar-dark bg-dark" style="z-index: 22;">
+    <div id="menu-nav" class="collapse navbar-collapse">
+
+      <div class="navbar-nav mr-auto">
+        <img src="./assets/img/logo.png" alt="Indra - Logo" height="36px">
+      </div>
+
+      <div class="d-flex">
+        <div class="dropdown mr-1">
+          <button type="button" class="btn btn-secondary dropdown-toggle" id="selector-language" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+            <img src="./assets/img/flags/{{app.getCurrentLanguage()}}.png">
+          </button>
+          <div class="dropdown-menu" aria-labelledby="selector-language">
+            <a class="dropdown-item acao" id="selector-language-options-en" (click)="app.setTranslate('en')">
+              <img src="./assets/img/flags/en.png">
+            </a>
+            <a class="dropdown-item acao" id="selector-language-options-pt-br" (click)="app.setTranslate('pt-BR')">
+              <img src="./assets/img/flags/pt-BR.png">
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+  <main role="main" class="container">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="footer">
+    <span style="right: 15px; position: absolute;">V.{{getVersion()}}</span>
+  </footer>
+
+</div>

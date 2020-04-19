@@ -1,0 +1,51 @@
+<div class="container">
+
+  <img class="mb-4" src="./assets/img/logo.png" style="padding-top: 15px;" alt="Indra Company - Logo" height="50">
+
+  <div class="d-flex" style="position: absolute; right: 15px; top: 15px;" >
+    <div class="dropdown mr-1">
+      <button type="button" class="btn btn-secondary dropdown-toggle" id="selector-language" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+        <img src="./assets/img/flags/{{app.getCurrentLanguage()}}.png">
+      </button>
+      <div class="dropdown-menu" aria-labelledby="selector-language">
+        <a class="dropdown-item" id="selector-language-options-en" (click)="app.setTranslate('en')">
+          <img src="./assets/img/flags/en.png">
+        </a>
+        <a class="dropdown-item" id="selector-language-options-pt-br" (click)="app.setTranslate('pt-BR')">
+          <img src="./assets/img/flags/pt-BR.png">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-8 d-none d-lg-block d-md-block" style="text-align: center;">
+      <img class="mb-4" src="./assets/img/logo2.png" style="margin-top: 20%; margin-right: 100px;"
+        alt="Indra Company - Minsait" width="40%;">
+    </div>
+
+    <div class="col-md-4">
+
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+
+      <div class="text-center" style="padding-top: 20px;">
+
+        <p style="margin: 0;">
+          <a id="login-link" [routerLink]="['']" [ngClass]="isLogin() ? 'omitir' : ''" >{{'public.template.login' | translate}}</a>
+        </p>
+
+        <p style="margin: 0;">
+          <a id="register-user-link" [routerLink]="['/register-user']" routerLinkActive="omitir" >{{'public.template.register-user' | translate}}</a>
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

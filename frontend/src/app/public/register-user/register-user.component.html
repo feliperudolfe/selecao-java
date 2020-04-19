@@ -1,0 +1,22 @@
+<div style="margin-top: 15%;" >
+
+	<form class="form-register-user" [formGroup]="form" (submit)="cadastrar()"  novalidate>
+
+		<h1 class="h3 mb-3 font-weight-normal">{{'public.register-user.text' | translate}}</h1>
+
+    <label for="nickname" class="sr-only">Apelido</label>
+
+		<label for="email" class="sr-only" >E-mail</label>
+		<input type="email" formControlName="email" id="email" class="form-control" [ngClass]="(form.controls['email'].pristine) ? '' : (form.controls['email'].valid) ? 'is-valid' : 'is-invalid'" placeholder="{{'public.register-user.email' | translate}}" style="margin-bottom: 4px;" autofocus>
+
+		<label for="password" class="sr-only">Senha</label>
+		<input type="password" formControlName="senha" id="password" class="form-control" [ngClass]="(form.controls['senha'].pristine) ? '' : (form.controls['senha'].valid) ? 'is-valid' : 'is-invalid'" placeholder="{{'public.register-user.password' | translate}}" style="margin-bottom: 4px;" autofocus>
+
+    <label for="confirmationPassword" class="sr-only">Confirmar senha</label>
+		<input type="password" formControlName="confirmarSenha" id="confirmationPassword" class="form-control" [ngClass]="(form.controls['confirmarSenha'].pristine) ? '' : (form.controls['confirmarSenha'].valid && isSenhaValida()) ? 'is-valid' : 'is-invalid'" placeholder="{{'public.register-user.confirm-password' | translate}}" style="margin-bottom: 20px;" autofocus>
+
+		<button type="submit" id="register-btn" [disabled]="!form.valid && isSenhaValida()" class="btn btn-lg btn-primary btn-block" >{{'public.register-user.register' | translate}}</button>
+
+	</form>
+
+</div>

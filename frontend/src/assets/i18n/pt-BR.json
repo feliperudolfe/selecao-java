@@ -1,0 +1,194 @@
+{
+  "msg": {
+    "success": "Sucesso",
+    "error": "Erro",
+    "warning": "Alerta",
+    "info": "Informativo",
+    "question": "Questão",
+    "text": {
+      "delete": {
+        "collaborator": "Deseja remover este colaborador?",
+        "project": "Deseja remover este projeto?"
+      },
+      "abandon": "Deseja abandonar este projeto?"
+    },
+    "result": {
+      "success": "Sucesso",
+      "failure": "Falha",
+      "error": "Erro",
+      "pending": "Pendente de execução"
+    },
+    "level": {
+      "very-low": "Muito baixo",
+      "low": "Baixo",
+      "average": "Médio",
+      "high": "Alto",
+      "very-high": "Muito alto"
+    }
+  },
+  "button": {
+    "view": "Visualizar",
+    "edit": "Editar",
+    "delete": "Remover",
+    "abandon": "Abandonar",
+    "previous": "Anterior",
+    "next": "Próximo",
+    "back": "Voltar",
+    "cancel": "Cancelar",
+    "add": "Adicionar",
+    "search": "Pesquisar",
+    "close": "Fechar",
+    "save": "Salvar",
+    "register": "Cadastrar",
+    "remove": "Remover"
+  },
+  "role": {
+    "owner": "Proprietário",
+    "tester": "Testador",
+    "development": "Desenvolvedor",
+    "manager": "Gerente de projetos",
+    "viewer": "Espectador"
+  },
+  "formater": {
+    "date": "dd/MM/yyyy",
+    "date-at-time": "dd/MM/yyyy 'às' HH:mm:ss",
+    "time": "mm:ss.SSS"
+  },
+  "public": {
+    "template": {
+      "activate-user": "Não ativou o usuário",
+      "recover-password": "Recuperar senha",
+      "register-user": "Não possui usuário",
+      "login": "Efetuar login"
+    },
+    "login": {
+      "email": "E-mail",
+      "password": "Senha",
+      "access": "Acessar"
+    },
+    "activate-user": {
+      "text": "Ativar usuário",
+      "email": "E-mail",
+      "send": "Enviar"
+    },
+    "recover-password": {
+      "text": "Recuperar senha",
+      "email": "E-mail",
+      "send": "Enviar"
+    },
+    "register-user": {
+      "text": "Cadastrar usuário",
+      "nickname": "Apelido",
+      "email": "E-mail",
+      "password": "Senha",
+      "confirm-password": "Confirmar senha",
+      "register": "Cadastrar"
+    }
+  },
+  "private": {
+    "menu": {
+      "projects": "Projetos",
+      "configurations": "Configurações",
+      "exit": "Sair"
+    },
+    "projects": {
+      "title": "Projetos do colaborador",
+      "add-new-project": "Adicionar novo projeto",
+      "table-image": "Imagem",
+      "table-name": "Nome",
+      "table-start-date": "Data de início",
+      "table-registration-date": "Data de cadastro",
+      "table-owner": "Proprietário",
+      "registers": "registros"
+    },
+    "register-project": {
+      "title": "Cadastro de projeto",
+      "title2": "Edição de projeto",
+      "name": "Nome",
+      "startDate": "Data de início"
+    },
+    "project-detail": {
+      "text": "Detalhes",
+      "title": "Detalhes do projeto",
+      "start-date": "Data de início",
+      "registration-date": "Data de cadastro",
+      "owner": "Proprietário",
+      "token": "Token",
+      "coll-email": "E-mail",
+      "coll-nickname": "Apelido",
+      "coll-role": "Função",
+      "contributors": "Colaboradores",
+      "table-avatar": "Avatar",
+      "table-nickname": "Apelido",
+      "table-email": "E-mail",
+      "table-role": "Função",
+      "add-collaborator": "Adicionar colaborador",
+      "view-collaborator": "Visualizar colaborador",
+      "edit-collaborator": "Editar colaborador"
+    },
+    "project-execution": {
+      "text": "Execuções",
+      "title": "Execuções do projeto",
+      "empty": "Nenhum resultado registrado até o momento",
+      "table-increment": "Execução",
+      "table-success": "Sucesso",
+      "table-failure": "Falha",
+      "table-error": "Erro",
+      "table-pending": "Pendente",
+      "table-total": "Total",
+      "table-start": "Início",
+      "table-end": "Fim",
+      "suite-id": "ID suite",
+      "suite-name": "Nome suite",
+      "suite-class": "Classe suite",
+      "suite-description": "Descrição suite",
+      "suite-sql": "SQL suite",
+      "script-id": "ID roteiro",
+      "script-name": "Nome roteiro",
+      "script-class": "Classe roteiro",
+      "script-description": "Descrição roteiro",
+      "script-csv": "CSV roteiro",
+      "script-sql": "SQL roteiro",
+      "result": "Resultado",
+      "result-id": "ID resultado",
+      "dataset": "Massa de dados",
+      "start": "Data hora início",
+      "end": "Data hora fim",
+      "execution-time": "Tempo de execução",
+      "evaluation": "Avaliação",
+      "relevance": "Relevância",
+      "criticity": "Criticidade",
+      "motive": "Motivo",
+      "screen": "Tela",
+      "video": "Video",
+      "preconditions": "Pre-condições",
+      "procedures": "Procedimentos",
+      "postconditions": "Pós-condições",
+      "browser": "Navegador",
+      "so": "SO",
+      "project-version": "Versão do projeto"
+    },
+    "project-script": {
+      "text": "Roteiros"
+    },
+    "project-configuration": {
+      "text": "Configurações",
+      "title": "Configurações do projeto",
+      "notifications": "Notificações",
+      "report-execution": "Notificar colaboradores sobre novas execuções"
+    },
+    "configuration": {
+      "title": "Configurações",
+      "user": {
+        "title": "Usuário",
+        "image": "Imagem",
+        "nickname": "Apelido",
+        "email": "E-mail",
+        "password": "Senha",
+        "new-password": "Nova senha",
+        "confirm-password": "Confirmar senha",
+        "current-password": "Senha atual"
+      }
+    }
+  }
+}

@@ -91,7 +91,7 @@ public class ImportacaoServiceImpl implements ImportacaoService {
 			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
 			if (ObjectUtil.isNullOrEmpty(fileName) || !fileName.endsWith(".csv")) {
-				throw new NegocioException(Mensagem.ALERTA, Msg.getMessage(MsgEnum.MSG001));
+				throw new NegocioException(Mensagem.ALERTA, Msg.get(MsgEnum.MSG001));
 			}
 
 			Path path = this.fileStorageLocation.resolve(fileName);
@@ -100,7 +100,7 @@ public class ImportacaoServiceImpl implements ImportacaoService {
 
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
-			throw new NegocioException(Msg.getMessage(MsgEnum.MSG002));
+			throw new NegocioException(Msg.get(MsgEnum.MSG002));
 		}
 
 		return retorno;

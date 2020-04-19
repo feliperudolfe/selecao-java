@@ -5,12 +5,16 @@ import java.util.List;
 
 import javax.ws.rs.WebApplicationException;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 import com.indracompany.comuns.modelo.dto.Mensagem;
 
 /**
  * @author 	Felipe Rudolfe Carvalho Pinheiro
  * @since   18 de abr de 2020
  */
+@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 public class NegocioException extends WebApplicationException {
 
 	/**

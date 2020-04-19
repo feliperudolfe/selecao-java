@@ -16,29 +16,34 @@ public class Resposta implements Serializable {
 	private static final long serialVersionUID = 731446072272793123L;
 
 	private Object data;
-	private List<Mensagem> mensagens;
+	private List<Mensagem> messages;
 
-	public Resposta(Object data, Mensagem ... mensagens) {
+	public Resposta(Object data) {
 		this.data = data;
-		this.mensagens = new ArrayList<>();
-		for (Mensagem msg : mensagens) {
-			this.mensagens.add(msg);
-		}
+	}
+
+	public Resposta(List<Mensagem> mensagens) {
+		this.messages = mensagens;
 	}
 
 	public Resposta(Mensagem ... mensagens) {
-		this.mensagens = new ArrayList<>();
+		this.messages = new ArrayList<>();
 		for (Mensagem msg : mensagens) {
-			this.mensagens.add(msg);
+			this.messages.add(msg);
 		}
 	}
 
 	public Resposta(Object data, List<Mensagem> mensagens) {
 		this.data = data;
-		this.mensagens = new ArrayList<>();
+		this.messages = new ArrayList<>();
 		for (Mensagem msg : mensagens) {
-			this.mensagens.add(msg);
+			this.messages.add(msg);
 		}
+	}
+
+	public Resposta(String tipo, String texto) {
+		this.messages = new ArrayList<>();
+		this.messages.add(new Mensagem(tipo, texto));
 	}
 
 	public Object getData() {
@@ -49,19 +54,19 @@ public class Resposta implements Serializable {
 		this.data = data;
 	}
 
-	public List<Mensagem> getMensagens() {
-		return mensagens;
+	public List<Mensagem> getMessages() {
+		return messages;
 	}
 
-	public void setMensagens(List<Mensagem> mensagens) {
-		this.mensagens = mensagens;
+	public void setMessages(List<Mensagem> mensagens) {
+		this.messages = mensagens;
 	}
 
-	public void addMensagem(Mensagem mensagem) {
-		if (this.mensagens == null) {
-			this.mensagens = new ArrayList<>();
+	public void addMessage(Mensagem mensagem) {
+		if (this.messages == null) {
+			this.messages = new ArrayList<>();
 		}
-		this.mensagens.add(mensagem);
+		this.messages.add(mensagem);
 	}
 
 }

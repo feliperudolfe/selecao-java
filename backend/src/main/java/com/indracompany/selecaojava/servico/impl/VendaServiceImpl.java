@@ -54,7 +54,7 @@ public class VendaServiceImpl implements VendaService {
 
 		} catch (PersistenceException e) {
 			LOG.error(e.getMessage(), e);
-			throw new NegocioException(Msg.getMessage(MsgEnum.MSG_ERRO_PADRAO));
+			throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO));
 		}
 
 		return retorno;
@@ -80,7 +80,7 @@ public class VendaServiceImpl implements VendaService {
 			throw e;
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
-			throw new NegocioException(Msg.getMessage(MsgEnum.MSG_ERRO_PADRAO));
+			throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO));
 		}
 	}
 

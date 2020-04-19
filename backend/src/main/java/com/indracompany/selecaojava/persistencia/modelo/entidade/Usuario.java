@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.indracompany.comuns.modelo.entidade.Entidade;
 
@@ -32,6 +33,9 @@ public class Usuario extends Entidade<Long> {
 	@Column(name = "senha", nullable = false)
 	private String senha;
 
+	@Transient
+	private String confirmarSenha;
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -54,6 +58,14 @@ public class Usuario extends Entidade<Long> {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getConfirmarSenha() {
+		return confirmarSenha;
+	}
+
+	public void setConfirmarSenha(String confirmarSenha) {
+		this.confirmarSenha = confirmarSenha;
 	}
 
 	@Override

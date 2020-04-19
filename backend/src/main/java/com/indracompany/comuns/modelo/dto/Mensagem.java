@@ -10,28 +10,28 @@ public class Mensagem {
 	public static final String ERRO = "error";
 	public static final String ALERTA = "warning";
 
-	private String tipo;
-	private String texto;
+	private String type;
+	private String text;
 
-	public Mensagem(String tipo, String texto) {
-		this.tipo = tipo;
-		this.texto = texto;
+	public Mensagem(String type, String text) {
+		this.type = type;
+		this.text = text;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getType() {
+		return type;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public String getTexto() {
-		return texto;
+	public String getText() {
+		return text;
 	}
 
-	public void setTexto(String texto) {
-		this.texto = texto;
+	public void setText(String text) {
+		this.text = text;
 	}
 
 }

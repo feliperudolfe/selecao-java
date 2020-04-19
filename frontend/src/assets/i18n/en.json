@@ -12,6 +12,9 @@
       "atualizar": {
         "venda": "Do you want to update this sale?"
       }
+    },
+    "register": {
+      "empty": "No records found"
     }
   },
   "button": {

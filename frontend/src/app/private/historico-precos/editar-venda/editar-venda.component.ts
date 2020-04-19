@@ -6,6 +6,9 @@ import { MsgService } from 'src/app/shared/services/msg.service';
 import { VendaDTO } from 'src/app/shared/model/venda.dto';
 import { VendaService } from 'src/app/shared/services/venda.service';
 import { MessageDTO } from 'src/app/shared/model/message.dto';
+import { OptionDTO } from 'src/app/shared/model/options.dto';
+import { ProdutoService } from 'src/app/shared/services/produto.service';
+import { DistribuidoraService } from 'src/app/shared/services/distribuidora.service';
 
 @Component({
   selector: 'app-editar-venda',
@@ -15,11 +18,15 @@ import { MessageDTO } from 'src/app/shared/model/message.dto';
 export class EditarVendaComponent implements OnInit {
 
   venda: VendaDTO;
+  produtos: Array<OptionDTO>;
+  distribuidoras: Array<OptionDTO>;
 
   form: FormGroup = new FormGroup({
     dataColeta: new FormControl(null, [Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
     valorVenda: new FormControl(null, [Validators.required]),
-    valorCompra: new FormControl(null, [])
+    valorCompra: new FormControl(null, []),
+    produto: new FormControl(null, [Validators.required]),
+    distribuidora: new FormControl(null, [Validators.required]),
   });
 
   constructor(
@@ -27,9 +34,23 @@ export class EditarVendaComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private translate: TranslateService,
     private msg: MsgService,
+    private produtoService: ProdutoService,
+    private distribuidoraService: DistribuidoraService,
     private vendaService: VendaService) { }
 
   ngOnInit() {
+
+    this.produtoService.listarOptions()
+      .subscribe((result) => {
+        console.log("result: ", result);
+        this.produtos = result;
+      });
+
+    this.distribuidoraService.listarOptions()
+      .subscribe((result) => {
+        console.log("result: ", result);
+        this.distribuidoras = result;
+      });
 
     this.activatedRoute.params.forEach(params => {
       const idVenda = params['idVenda'];
@@ -38,14 +59,20 @@ export class EditarVendaComponent implements OnInit {
         this.vendaService.get(idVenda)
           .subscribe((result) => {
             if (result) {
+
+              console.log("result: ", result);
+
               this.venda = result.data;
               this.form.patchValue({
                 dataColeta: this.venda.dataColeta,
                 valorVenda: this.venda.valorVenda,
-                valorCompra: this.venda.valorCompra
+                valorCompra: this.venda.valorCompra,
+                produto: this.venda.produto.codigo,
+                distribuidora: this.venda.distribuidora.codigo,
               });
             }
           });
+
       }
     });
   }
@@ -65,6 +92,12 @@ export class EditarVendaComponent implements OnInit {
           dataColeta: this.parse(this.form.controls.dataColeta.value),
           valorVenda: this.form.controls.valorVenda.value,
           valorCompra: this.form.controls.valorCompra.value,
+          produto: {
+            codigo: this.form.controls.produto.value
+          },
+          distribuidora: {
+            codigo: this.form.controls.distribuidora.value
+          }
         };
 
         if (result.value) {

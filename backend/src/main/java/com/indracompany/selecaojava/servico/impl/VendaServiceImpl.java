@@ -155,10 +155,15 @@ public class VendaServiceImpl implements VendaService {
 				throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO, "Venda"));
 			}
 
+			Produto produto = this.produtoService.consultarPorCodigo(vendaDTO.getProduto().getCodigo());
+			Distribuidora distribuidora = this.distribuidoraService.consultarPorCodigo(vendaDTO.getDistribuidora().getCodigo());
+
 			Venda vendaAtual = opt.get();
 			vendaAtual.setDataColeta(vendaDTO.getDataColeta());
 			vendaAtual.setValorVenda(vendaDTO.getValorVenda());
 			vendaAtual.setValorCompra(vendaDTO.getValorCompra());
+			vendaAtual.setProduto(produto);
+			vendaAtual.setDistribuidora(distribuidora);
 
 			this.repository.save(vendaAtual);
 

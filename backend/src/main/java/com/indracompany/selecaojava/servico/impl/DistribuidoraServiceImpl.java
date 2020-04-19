@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 import com.indracompany.comuns.tratamento.NegocioException;
 import com.indracompany.selecaojava.app.mensagem.Msg;
 import com.indracompany.selecaojava.app.mensagem.MsgEnum;
-import com.indracompany.selecaojava.persistencia.dao.repositorio.DistribuidoraRepository;
 import com.indracompany.selecaojava.persistencia.modelo.entidade.Distribuidora;
 import com.indracompany.selecaojava.persistencia.modelo.entidade.Municipio;
+import com.indracompany.selecaojava.persistencia.repositorio.DistribuidoraRepository;
 import com.indracompany.selecaojava.servico.DistribuidoraService;
 import com.indracompany.selecaojava.servico.MunicipioService;
 

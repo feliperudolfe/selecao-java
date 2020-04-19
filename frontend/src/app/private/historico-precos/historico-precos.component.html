@@ -1,1 +1,92 @@
-<p>historico-precos works!</p>
+<div>
+
+	<h2 class="mt-5 title-page">
+
+		<span class="title-span">{{'private.historico.title' | translate}}</span>
+
+		<button title="{{'button.upload' | translate}}" type="button" class="btn btn-primary btn-circle btn-sm">
+			<i class="fas fa-upload"></i>
+		</button>
+
+	</h2>
+
+	<div class="row">
+
+		<div class="col-md-12" *ngIf="paginator">
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">{{'private.historico.table.dataColeta' | translate}}</th>
+							<th scope="col">{{'private.historico.table.valorVenda' | translate}}</th>
+							<th scope="col">{{'private.historico.table.valorCompra' | translate}}</th>
+							<th scope="col">{{'private.historico.table.produto' | translate}}</th>
+							<th scope="col">{{'private.historico.table.bandeira' | translate}}</th>
+							<th scope="col">{{'private.historico.table.distribuidora' | translate}}</th>
+							<th scope="col">#</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let item of paginator.list">
+							<td>{{item.dataColeta}}</td>
+							<td>{{item.valorVenda}}</td>
+							<td>{{item.valorCompra}}</td>
+							<td>{{item.produto.nome}}</td>
+							<td>{{item.produto.bandeira.nome}}</td>
+							<td>{{item.distribuidora.nome}}</td>
+							<td>
+
+								<button [routerLink]="['/private/projects', item.id, 'details']"
+									title="{{'button.view' | translate}}" routerLinkActive="router-link-active"
+									type="button" class="btn btn-primary btn-circle btn-xs">
+									<i class="fas fa-search"></i>
+								</button>
+
+								<button [routerLink]="['/private/projects/edit', item.id]" type="button"
+									title="{{'button.edit' | translate}}" class="btn btn-success btn-circle btn-xs">
+									<i class="fas fa-edit"></i>
+								</button>
+
+								<button type="button" title="{{'button.delete' | translate}}"
+									(click)="removerProject(item.id)" class="btn btn-danger btn-circle btn-xs">
+									<i class="fas fa-trash-alt"></i>
+								</button>
+
+								<button type="button" title="{{'button.abandon' | translate}}"
+									(click)="abandonar(item.id)" class="btn btn-warning btn-circle btn-xs">
+									<i class="fas fa-sign-out-alt"></i>
+								</button>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div style="margin-left: 5px;">
+				<strong>{{paginator.count}} {{'private.historico.table.registros' | translate}}</strong>
+			</div>
+
+			<nav aria-label="Page navigation example" *ngIf="isPagination()">
+				<ul class="pagination justify-content-end">
+
+					<li class="page-item" [ngClass]="isMinlength() ? 'disabled' : ''">
+						<a (click)="previous()" class="page-link acao" tabindex="-1">{{'button.previous' | translate}}</a>
+					</li>
+
+					<li class="page-item" [ngClass]="isCurrentPage(item) ? 'active' : ''" *ngFor="let item of getPages()">
+						<a class="page-link acao" (click)="requestpage(item)">{{item}}</a>
+					</li>
+
+					<li class="page-item" [ngClass]="isMaxlength() ? 'disabled' : ''">
+						<a (click)="next()" class="page-link acao">{{'button.next' | translate}}</a>
+					</li>
+
+				</ul>
+			</nav>
+
+		</div>
+
+	</div>
+
+</div>

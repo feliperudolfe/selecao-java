@@ -40,7 +40,8 @@
     "close": "Close",
     "save": "Save",
     "register": "Register",
-    "remove": "Remove"
+    "remove": "Remove",
+    "upload": "Upload"
   },
   "role": {
     "owner": "Owner",
@@ -87,108 +88,20 @@
   },
   "private": {
     "menu": {
-      "projects": "Projects",
-      "configurations": "Configurations",
+      "historico-precos": "Price history",
+      "usuarios": "Users",
       "exit": "Exit"
     },
-    "projects": {
-      "title": "Collaborator projects",
-      "add-new-project": "Add new project",
-      "table-image": "Image",
-      "table-name": "Name",
-      "table-start-date": "Start date",
-      "table-registration-date": "Registration date",
-      "table-owner": "Owner",
-      "registers": "registers"
-    },
-    "register-project": {
-      "title": "Project Registration",
-      "title2": "Edit Project",
-      "name": "Name",
-      "startDate": "Start date"
-    },
-    "project-detail": {
-      "text": "Details",
-      "title": "Project details",
-      "start-date": "Start date",
-      "registration-date": "Registration date",
-      "owner": "Owner",
-      "token": "Token",
-      "coll-email": "Email",
-      "coll-nickname": "Nickname",
-      "coll-role": "Role",
-      "contributors": "Contributors",
-      "table-avatar": "Avatar",
-      "table-name": "Name",
-      "table-nickname": "Nickname",
-      "table-email": "Email",
-      "table-role": "Role",
-      "add-collaborator": "Add collaborator",
-      "view-collaborator": "View collaborator",
-      "edit-collaborator": "Edit collaborator"
-    },
-    "project-execution": {
-      "text": "Executions",
-      "title": "Project executions",
-      "empty": "No results recorded so far",
-      "table-increment": "Execution",
-      "table-success": "Success",
-      "table-failure": "Failure",
-      "table-error": "Error",
-      "table-pending": "Pending",
-      "table-total": "Total",
-      "table-start": "Start",
-      "table-end": "End",
-      "suite-id": "Suite ID",
-      "suite-name": "Suite name",
-      "suite-class": "Suite class",
-      "suite-description": "Suite description",
-      "suite-sql": "Suite SQL",
-      "script-id": "Script ID",
-      "script-name": "Script name",
-      "script-class": "Script class",
-      "script-description": "Script description",
-      "script-csv": "Script CSV",
-      "script-sql": "Script SQL",
-      "result": "Result",
-      "result-id": "Result ID",
-      "dataset": "Dataset",
-      "start": "Datetime start",
-      "end": "Datetime end",
-      "execution-time": "Execution time",
-      "evaluation": "Evaluation",
-      "relevance": "Relevance",
-      "criticity": "Criticity",
-      "motive": "Motive",
-      "screen": "Screen",
-      "video": "Video",
-      "preconditions": "Preconditions",
-      "procedures": "Procedures",
-      "postconditions": "Postconditions",
-      "browser": "Browser",
-      "so": "SO",
-      "project-version": "Project version"
-    },
-    "project-script": {
-      "text": "Scritps"
-    },
-    "project-configuration": {
-      "text": "Configurations",
-      "title": "Project settings",
-      "notifications": "Notifications",
-      "report-execution": "Notify contributors about new executions"
-    },
-    "configuration": {
-      "title": "Configurations",
-      "user": {
-        "title": "User",
-        "image": "Image",
-        "nickname": "Nickname",
-        "email": "Email",
-        "password": "Password",
-        "new-password": "New password",
-        "confirm-password": "Confirm password",
-        "current-password": "Current password"
+    "historico": {
+      "title": "Price history",
+      "table": {
+        "dataColeta": "Collection Date",
+        "valorVenda": "Sale price",
+        "valorCompra": "Purchase price",
+        "produto": "Product",
+        "bandeira": "Brand",
+        "distribuidora": "Distributor",
+        "registros": "registers"
       }
     }
   }

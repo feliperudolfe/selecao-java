@@ -3,11 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MsgService } from './msg.service';
-import { ProjectService } from './project.service';
-import { RoleService } from './role.service';
-import { CollaboratorService } from './collaborator.service';
-import { ResultService } from './result.service';
-import { ExecutionService } from './execution.service';
+import { HistoricoPrecoService } from './historico-preco.service';
 
 
 
@@ -20,11 +16,7 @@ import { ExecutionService } from './execution.service';
   providers: [
     MsgService,
     UserService,
-    ProjectService,
-    RoleService,
-    ResultService,
-    ExecutionService,
-    CollaboratorService
+    HistoricoPrecoService
   ]
 })
 export class ServicesModule { }

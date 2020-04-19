@@ -12,10 +12,12 @@ import org.springframework.stereotype.Service;
 import com.indracompany.comuns.tratamento.NegocioException;
 import com.indracompany.selecaojava.app.mensagem.Msg;
 import com.indracompany.selecaojava.app.mensagem.MsgEnum;
-import com.indracompany.selecaojava.persistencia.dao.repositorio.VendaRepository;
+import com.indracompany.selecaojava.persistencia.dao.VendaDAO;
+import com.indracompany.selecaojava.persistencia.modelo.dto.VendaPaginadorDTO;
 import com.indracompany.selecaojava.persistencia.modelo.entidade.Distribuidora;
 import com.indracompany.selecaojava.persistencia.modelo.entidade.Produto;
 import com.indracompany.selecaojava.persistencia.modelo.entidade.Venda;
+import com.indracompany.selecaojava.persistencia.repositorio.VendaRepository;
 import com.indracompany.selecaojava.servico.DistribuidoraService;
 import com.indracompany.selecaojava.servico.ProdutoService;
 import com.indracompany.selecaojava.servico.VendaService;
@@ -31,6 +33,9 @@ public class VendaServiceImpl implements VendaService {
 
 	@Autowired
 	private VendaRepository repository;
+
+	@Autowired
+	private VendaDAO dao;
 
 	@Autowired
 	private ProdutoService produtoService;
@@ -82,6 +87,24 @@ public class VendaServiceImpl implements VendaService {
 			LOG.error(e.getMessage(), e);
 			throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO));
 		}
+	}
+
+	@Override
+	public VendaPaginadorDTO listar(VendaPaginadorDTO paginator) {
+
+		try {
+
+			paginator = this.dao.listar(paginator);
+
+		} catch (PersistenceException e) {
+			LOG.error(e.getMessage(), e);
+			throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO));
+		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+			throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO));
+		}
+
+		return paginator;
 	}
 
 }

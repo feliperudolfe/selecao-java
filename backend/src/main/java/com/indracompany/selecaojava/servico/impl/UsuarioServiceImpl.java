@@ -15,8 +15,8 @@ import com.indracompany.comuns.tratamento.NegocioException;
 import com.indracompany.comuns.util.ObjectUtil;
 import com.indracompany.selecaojava.app.mensagem.Msg;
 import com.indracompany.selecaojava.app.mensagem.MsgEnum;
-import com.indracompany.selecaojava.persistencia.dao.repositorio.UsuarioRepository;
 import com.indracompany.selecaojava.persistencia.modelo.entidade.Usuario;
+import com.indracompany.selecaojava.persistencia.repositorio.UsuarioRepository;
 import com.indracompany.selecaojava.servico.UsuarioService;
 
 /**

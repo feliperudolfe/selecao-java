@@ -40,7 +40,8 @@
     "close": "Fechar",
     "save": "Salvar",
     "register": "Cadastrar",
-    "remove": "Remover"
+    "remove": "Remover",
+    "upload": "Upload"
   },
   "role": {
     "owner": "Proprietário",
@@ -87,107 +88,20 @@
   },
   "private": {
     "menu": {
-      "projects": "Projetos",
-      "configurations": "Configurações",
+      "historico-precos": "Histórico de preços",
+      "usuarios": "Usuários",
       "exit": "Sair"
     },
-    "projects": {
-      "title": "Projetos do colaborador",
-      "add-new-project": "Adicionar novo projeto",
-      "table-image": "Imagem",
-      "table-name": "Nome",
-      "table-start-date": "Data de início",
-      "table-registration-date": "Data de cadastro",
-      "table-owner": "Proprietário",
-      "registers": "registros"
-    },
-    "register-project": {
-      "title": "Cadastro de projeto",
-      "title2": "Edição de projeto",
-      "name": "Nome",
-      "startDate": "Data de início"
-    },
-    "project-detail": {
-      "text": "Detalhes",
-      "title": "Detalhes do projeto",
-      "start-date": "Data de início",
-      "registration-date": "Data de cadastro",
-      "owner": "Proprietário",
-      "token": "Token",
-      "coll-email": "E-mail",
-      "coll-nickname": "Apelido",
-      "coll-role": "Função",
-      "contributors": "Colaboradores",
-      "table-avatar": "Avatar",
-      "table-nickname": "Apelido",
-      "table-email": "E-mail",
-      "table-role": "Função",
-      "add-collaborator": "Adicionar colaborador",
-      "view-collaborator": "Visualizar colaborador",
-      "edit-collaborator": "Editar colaborador"
-    },
-    "project-execution": {
-      "text": "Execuções",
-      "title": "Execuções do projeto",
-      "empty": "Nenhum resultado registrado até o momento",
-      "table-increment": "Execução",
-      "table-success": "Sucesso",
-      "table-failure": "Falha",
-      "table-error": "Erro",
-      "table-pending": "Pendente",
-      "table-total": "Total",
-      "table-start": "Início",
-      "table-end": "Fim",
-      "suite-id": "ID suite",
-      "suite-name": "Nome suite",
-      "suite-class": "Classe suite",
-      "suite-description": "Descrição suite",
-      "suite-sql": "SQL suite",
-      "script-id": "ID roteiro",
-      "script-name": "Nome roteiro",
-      "script-class": "Classe roteiro",
-      "script-description": "Descrição roteiro",
-      "script-csv": "CSV roteiro",
-      "script-sql": "SQL roteiro",
-      "result": "Resultado",
-      "result-id": "ID resultado",
-      "dataset": "Massa de dados",
-      "start": "Data hora início",
-      "end": "Data hora fim",
-      "execution-time": "Tempo de execução",
-      "evaluation": "Avaliação",
-      "relevance": "Relevância",
-      "criticity": "Criticidade",
-      "motive": "Motivo",
-      "screen": "Tela",
-      "video": "Video",
-      "preconditions": "Pre-condições",
-      "procedures": "Procedimentos",
-      "postconditions": "Pós-condições",
-      "browser": "Navegador",
-      "so": "SO",
-      "project-version": "Versão do projeto"
-    },
-    "project-script": {
-      "text": "Roteiros"
-    },
-    "project-configuration": {
-      "text": "Configurações",
-      "title": "Configurações do projeto",
-      "notifications": "Notificações",
-      "report-execution": "Notificar colaboradores sobre novas execuções"
-    },
-    "configuration": {
-      "title": "Configurações",
-      "user": {
-        "title": "Usuário",
-        "image": "Imagem",
-        "nickname": "Apelido",
-        "email": "E-mail",
-        "password": "Senha",
-        "new-password": "Nova senha",
-        "confirm-password": "Confirmar senha",
-        "current-password": "Senha atual"
+    "historico": {
+      "title": "Histórico de preços",
+      "table": {
+        "dataColeta": "Data de Coleta",
+        "valorVenda": "Valor de venda",
+        "valorCompra": "Valor de compra",
+        "produto": "Produto",
+        "bandeira": "Bandeira",
+        "distribuidora": "Distribuidora",
+        "registros": "registros"
       }
     }
   }

@@ -45,4 +45,20 @@ public enum RegiaoEnum {
 		return retorno;
 	}
 
+	public static RegiaoEnum getPorNome(String nome) {
+
+		RegiaoEnum retorno = null;
+		if (nome != null) {
+			nome = nome.trim();
+			for (RegiaoEnum item : RegiaoEnum.values()) {
+				if (item.getNome().equalsIgnoreCase(nome)) {
+					retorno = item;
+					break;
+				}
+			}
+		}
+
+		return retorno;
+	}
+
 }

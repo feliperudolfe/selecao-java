@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.scheduling.annotation.Async;
 
+import com.indracompany.selecaojava.persistencia.modelo.dto.VendaPaginadorDTO;
 import com.indracompany.selecaojava.persistencia.modelo.entidade.Venda;
 
 /**
@@ -34,5 +35,14 @@ public interface VendaService {
 	@Async
 	@Transactional
 	void salvar(List<Venda> vendas);
+
+	/**
+	 * Listar de forma paginada registros de vendas
+	 *
+	 * @author 	Felipe Rudolfe Carvalho Pinheiro
+	 * @since   19 de abr de 2020
+	 * @param 	paginator
+	 */
+	VendaPaginadorDTO listar(VendaPaginadorDTO paginator);
 
 }

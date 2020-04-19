@@ -1,4 +1,4 @@
-package com.indracompany.selecaojava.persistencia.dao.repositorio;
+package com.indracompany.selecaojava.persistencia.repositorio;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

@@ -1,8 +1,5 @@
 package com.indracompany.selecaojava.persistencia.modelo.entidade;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.indracompany.comuns.modelo.entidade.Entidade;
@@ -42,9 +38,6 @@ public class Distribuidora extends Entidade<Long> {
 	@JoinColumn(name = "municipio", nullable = false)
 	private Municipio municipio;
 
-	@OneToMany(mappedBy = "distribuidora")
-	private List<Venda> compras;
-
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -75,21 +68,6 @@ public class Distribuidora extends Entidade<Long> {
 
 	public void setMunicipio(Municipio municipio) {
 		this.municipio = municipio;
-	}
-
-	public List<Venda> getCompras() {
-		return compras;
-	}
-
-	public void setCompras(List<Venda> compras) {
-		this.compras = compras;
-	}
-
-	public void addProdutoCompra(Venda venda) {
-		if (this.compras == null) {
-			this.compras = new ArrayList<>();
-		}
-		this.compras.add(venda);
 	}
 
 	@Override

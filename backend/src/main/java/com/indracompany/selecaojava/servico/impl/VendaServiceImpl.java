@@ -107,4 +107,17 @@ public class VendaServiceImpl implements VendaService {
 		return paginator;
 	}
 
+	@Override
+	public void remover(Long codigo) {
+
+		try {
+
+			this.repository.deleteById(codigo);
+
+		} catch (PersistenceException e) {
+			LOG.error(e.getMessage(), e);
+			throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO));
+		}
+	}
+
 }

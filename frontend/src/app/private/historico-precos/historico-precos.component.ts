@@ -3,6 +3,11 @@ import { HistoricoPrecoService } from 'src/app/shared/services/historico-preco.s
 import { HistoricoPrecoPaginatorDTO } from 'src/app/shared/model/venda.paginator.dto';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { Location } from '@angular/common';
+import { VendaDTO } from 'src/app/shared/model/venda.dto';
+import { TranslateService } from '@ngx-translate/core';
+import { MsgService } from 'src/app/shared/services/msg.service';
+import { VendaService } from 'src/app/shared/services/venda.service';
+import { MessageDTO } from 'src/app/shared/model/message.dto';
 
 @Component({
   selector: 'app-historico-precos',
@@ -12,11 +17,15 @@ import { Location } from '@angular/common';
 export class HistoricoPrecosComponent implements OnInit {
 
   paginator: HistoricoPrecoPaginatorDTO;
+  venda: VendaDTO
 
   constructor(
+    private msg: MsgService,
     private route: Router,
     private location: Location,
     private router: ActivatedRoute,
+    private translate: TranslateService,
+    private vendaService: VendaService,
     private historicoPrecoService: HistoricoPrecoService) { }
 
   ngOnInit() {
@@ -31,6 +40,29 @@ export class HistoricoPrecosComponent implements OnInit {
     });
 
     this.doPaginator();
+  }
+
+  visualizarVenda(item: VendaDTO) {
+    this.venda = item;
+  }
+
+  removerVenda(codigo: number) {
+
+    const msgDTO: MessageDTO = {
+      type: 'question',
+      text: this.translate.get('msg.text.delete.venda')['value']
+    }
+
+    this.msg.showConfirm(msgDTO)
+      .then((result) => {
+        if (result.value) {
+          this.vendaService.remover(codigo)
+            .subscribe((response) => {
+              this.msg.show(response.messages[0]);
+              this.ngOnInit();
+            });
+        }
+      });
   }
 
   private doPaginator() {

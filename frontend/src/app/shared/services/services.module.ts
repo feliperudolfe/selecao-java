@@ -4,6 +4,7 @@ import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MsgService } from './msg.service';
 import { HistoricoPrecoService } from './historico-preco.service';
+import { VendaService } from './venda.service';
 
 
 
@@ -16,7 +17,8 @@ import { HistoricoPrecoService } from './historico-preco.service';
   providers: [
     MsgService,
     UserService,
-    HistoricoPrecoService
+    HistoricoPrecoService,
+    VendaService
   ]
 })
 export class ServicesModule { }

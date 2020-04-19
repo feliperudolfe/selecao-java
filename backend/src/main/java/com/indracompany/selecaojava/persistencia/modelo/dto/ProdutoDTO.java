@@ -1,5 +1,7 @@
 package com.indracompany.selecaojava.persistencia.modelo.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.indracompany.comuns.converter.UnidadeMedidaSerializer;
 import com.indracompany.comuns.modelo.dto.DTO;
 import com.indracompany.selecaojava.persistencia.modelo.tipo.UnidadeMedidaEnum;
 
@@ -16,7 +18,10 @@ public class ProdutoDTO extends DTO {
 
 	private Long codigo;
 	private String nome;
+
+	@JsonSerialize(using = UnidadeMedidaSerializer.class)
 	private UnidadeMedidaEnum unidadeMedida;
+
 	private BandeiraDTO bandeira;
 
 	public Long getCodigo() {

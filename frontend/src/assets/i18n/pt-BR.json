@@ -7,23 +7,8 @@
     "question": "Questão",
     "text": {
       "delete": {
-        "collaborator": "Deseja remover este colaborador?",
-        "project": "Deseja remover este projeto?"
-      },
-      "abandon": "Deseja abandonar este projeto?"
-    },
-    "result": {
-      "success": "Sucesso",
-      "failure": "Falha",
-      "error": "Erro",
-      "pending": "Pendente de execução"
-    },
-    "level": {
-      "very-low": "Muito baixo",
-      "low": "Baixo",
-      "average": "Médio",
-      "high": "Alto",
-      "very-high": "Muito alto"
+        "venda": "Deseja remover esta venda?"
+      }
     }
   },
   "button": {
@@ -42,13 +27,6 @@
     "register": "Cadastrar",
     "remove": "Remover",
     "upload": "Upload"
-  },
-  "role": {
-    "owner": "Proprietário",
-    "tester": "Testador",
-    "development": "Desenvolvedor",
-    "manager": "Gerente de projetos",
-    "viewer": "Espectador"
   },
   "formater": {
     "date": "dd/MM/yyyy",
@@ -92,6 +70,11 @@
       "usuarios": "Usuários",
       "exit": "Sair"
     },
+    "modal": {
+      "venda": {
+        "visualizar": "Visualizar venda"
+      }
+    },
     "historico": {
       "title": "Histórico de preços",
       "table": {
@@ -104,6 +87,25 @@
         "cnpj": "CNPJ distribuidora",
         "registros": "registros"
       }
-    }
+    },
+    "venda": {
+      "title": "Venda",
+      "dataColeta": "Data de Coleta",
+      "valorVenda": "Valor de venda",
+      "valorCompra": "Valor de compra"
+    },
+    "produto": {
+      "nome": "Produto",
+      "unidadeMedida": "Unidade de medida"
+    },
+    "distribuidora": {
+      "cnpj": "CNPJ distribuidora",
+      "nome": "Distribuidora"
+    },
+    "bandeira": "Bandeira",
+    "localidade": "Localidade",
+    "municipio": "Município",
+    "uf": "UF",
+    "regiao": "Região"
   }
 }

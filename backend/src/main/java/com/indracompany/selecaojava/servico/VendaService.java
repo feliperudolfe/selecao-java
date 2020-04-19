@@ -45,4 +45,13 @@ public interface VendaService {
 	 */
 	VendaPaginadorDTO listar(VendaPaginadorDTO paginator);
 
+	/**
+	 * Serviço para exclusão de venda
+	 *
+	 * @author 	Felipe Rudolfe Carvalho Pinheiro
+	 * @since   19 de abr de 2020
+	 * @param 	codigo
+	 */
+	void remover(Long codigo);
+
 }

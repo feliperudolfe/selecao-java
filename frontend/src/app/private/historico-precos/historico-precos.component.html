@@ -24,7 +24,7 @@
 							<th scope="col">{{'private.historico.table.bandeira' | translate}}</th>
 							<th scope="col">{{'private.historico.table.cnpj' | translate}}</th>
 							<th scope="col">{{'private.historico.table.distribuidora' | translate}}</th>
-							<th scope="col">#</th>
+							<th scope="col" style="min-width: 135px;" >#</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -38,9 +38,7 @@
 							<td>{{item.distribuidora.nome}}</td>
 							<td>
 
-								<button [routerLink]="['/private/projects', item.id, 'details']"
-									title="{{'button.view' | translate}}" routerLinkActive="router-link-active"
-									type="button" class="btn btn-primary btn-circle btn-xs">
+								<button data-toggle="modal" data-target="#venda-visualizar-modal" (click)="visualizarVenda(item)" title="{{'button.view' | translate}}" type="button" class="btn btn-primary btn-circle btn-xs">
 									<i class="fas fa-search"></i>
 								</button>
 
@@ -50,7 +48,7 @@
 								</button>
 
 								<button type="button" title="{{'button.delete' | translate}}"
-									(click)="removerProject(item.id)" class="btn btn-danger btn-circle btn-xs">
+									(click)="removerVenda(item.codigo)" class="btn btn-danger btn-circle btn-xs">
 									<i class="fas fa-trash-alt"></i>
 								</button>
 
@@ -90,5 +88,118 @@
 		</div>
 
 	</div>
+
+	<!-- The Modal -->
+    <div class="modal fade" data-backdrop="static" id="venda-visualizar-modal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">{{'private.modal.venda.visualizar' | translate}}</h4>
+            <button id="venda-visualizar-modalr" type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body" style="min-height: 320px;" *ngIf="venda">
+
+			<h5>
+				{{'private.venda.title' | translate}}
+			</h5>
+
+            <div class="row">
+
+              <div class="col-md-4">
+                <label>{{'private.venda.dataColeta' | translate}}:</label>
+                <p class="text-left">{{venda.dataColeta}}</p>
+              </div>
+
+              <div class="col-md-4">
+                <label>{{'private.venda.valorVenda' | translate}}:</label>
+                <p class="text-left">{{venda.valorVenda}}</p>
+              </div>
+
+              <div class="col-md-4">
+                <label >{{'private.venda.valorCompra' | translate}}:</label>
+                <p class="text-left">{{venda.valorCompra}}</p>
+              </div>
+
+			</div>
+
+			<h5>
+				{{'private.produto.nome' | translate}}
+			</h5>
+
+			<div class="row">
+
+				<div class="col-md-4">
+					<label>{{'private.produto.nome' | translate}}:</label>
+					<p class="text-left">{{venda.produto.nome}}</p>
+				</div>
+
+				<div class="col-md-4">
+					<label>{{'private.produto.unidadeMedida' | translate}}:</label>
+					<p class="text-left">{{venda.produto.unidadeMedida}}</p>
+				</div>
+
+				<div class="col-md-4">
+					<label>{{'private.bandeira' | translate}}:</label>
+					<p class="text-left">{{venda.produto.bandeira.nome}}</p>
+				</div>
+
+			</div>
+
+			<h5>
+				{{'private.distribuidora.nome' | translate}}
+			</h5>
+
+			<div class="row">
+
+				<div class="col-md-4">
+					<label>{{'private.distribuidora.cnpj' | translate}}:</label>
+					<p class="text-left">{{venda.distribuidora.cnpj}}</p>
+				</div>
+
+				<div class="col-md-8">
+					<label>{{'private.distribuidora.nome' | translate}}:</label>
+					<p class="text-left">{{venda.distribuidora.nome}}</p>
+				</div>
+
+			</div>
+
+			<h5>
+				{{'private.localidade' | translate}}
+			</h5>
+
+			<div class="row">
+
+				<div class="col-md-6">
+					<label>{{'private.municipio' | translate}}:</label>
+					<p class="text-left">{{venda.distribuidora.municipio.nome}}</p>
+				</div>
+
+				<div class="col-md-3">
+					<label>{{'private.uf' | translate}}:</label>
+					<p class="text-left">{{venda.distribuidora.municipio.uf.codigo}}</p>
+				</div>
+
+				<div class="col-md-3">
+					<label>{{'private.regiao' | translate}}:</label>
+					<p class="text-left">{{venda.distribuidora.municipio.uf.regiao}}</p>
+				</div>
+
+			</div>
+
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" (click)="cancelAddCollaborator()" class="btn btn-primary"
+              data-dismiss="modal">{{'button.close' | translate}}</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
 </div>

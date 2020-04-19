@@ -7,23 +7,8 @@
     "question": "Question",
     "text": {
       "delete": {
-        "collaborator": "Do you want to remove this contributor?",
-        "project": "Do you want to remove this project?"
-      },
-      "abandon": "Do you want to abandon this project?"
-    },
-    "result": {
-      "success": "Success",
-      "failure": "Failure",
-      "error": "Error",
-      "pending": "Pending execution"
-    },
-    "level": {
-      "very-low": "Very low",
-      "low": "Low",
-      "average": "Average",
-      "high": "High",
-      "very-high": "Very high"
+        "venda": "Do you want to remove this sale?"
+      }
     }
   },
   "button": {
@@ -42,13 +27,6 @@
     "register": "Register",
     "remove": "Remove",
     "upload": "Upload"
-  },
-  "role": {
-    "owner": "Owner",
-    "tester": "Tester",
-    "development": "Developer",
-    "manager": "Project Manager",
-    "viewer": "Viewer"
   },
   "formater": {
     "date": "yyyy/MM/dd",
@@ -92,6 +70,11 @@
       "usuarios": "Users",
       "exit": "Exit"
     },
+    "modal": {
+      "venda": {
+        "visualizar": "View sale"
+      }
+    },
     "historico": {
       "title": "Price history",
       "table": {
@@ -104,6 +87,25 @@
         "cnpj": "CNPJ Distributor",
         "registros": "registers"
       }
-    }
+    },
+    "venda": {
+        "title": "Sale",
+        "dataColeta": "Collection Date",
+        "valorVenda": "Sale price",
+        "valorCompra": "Purchase price"
+      },
+      "produto": {
+        "nome": "Product",
+        "unidadeMedida": "Unit of measurement"
+      },
+      "distribuidora": {
+        "cnpj": "CNPJ Distributor",
+        "nome": "Distributor"
+      },
+      "bandeira": "Brand",
+      "localidade": "Locality",
+      "municipio": "County",
+      "uf": "State",
+      "regiao": "Region"
   }
 }

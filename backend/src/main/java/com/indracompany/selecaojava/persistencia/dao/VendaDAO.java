@@ -29,6 +29,8 @@ public class VendaDAO extends DAO {
 	private static final String MUNICIPIO = "municipio";
 	private static final String ESTADO = "uf";
 	private static final String REGIAO = "regiao";
+	private static final String BANDEIRA = "bandeira";
+	private static final String NOME = "nome";
 
 	/**
 	 * Obter registros de forma paginada
@@ -70,6 +72,23 @@ public class VendaDAO extends DAO {
 		return paginator;
 	}
 
+	/**
+	 * Obter valor médio da venda por município e/ou bandeira
+	 *
+	 * @author 	Felipe Rudolfe Carvalho Pinheiro
+	 * @since   20 de abr de 2020
+	 * @param 	municipio
+	 * @param nomeMunicipio
+	 * @param 	bandeira
+	 */
+	public VendaDTO obterMedia(Long municipio, String nomeMunicipio, Long bandeira) {
+
+		Double valorVenda = this.getMedia(VALOR_VENDA, municipio, nomeMunicipio, bandeira);
+		Double valorCompra = this.getMedia(VALOR_COMPRA, municipio, nomeMunicipio, bandeira);
+
+		return new VendaDTO(valorVenda, valorCompra);
+	}
+
 	private Long countPorFiltros(VendaPaginadorDTO paginadorDTO) {
 
         CriteriaBuilder builder = getCriteriaBuilder();
@@ -103,5 +122,30 @@ public class VendaDAO extends DAO {
 
         return predicados;
     }
+
+	private Double getMedia(final String campo, Long municipio, String nomeMunicipio, Long bandeira) {
+
+		CriteriaBuilder builder = getCriteriaBuilder();
+		CriteriaQuery<Double> query = builder.createQuery(Double.class);
+		Root<Venda> root = query.from(Venda.class);
+
+		List<Predicate> predicados = new ArrayList<>();
+        if (ObjectUtil.isNotNull(municipio)) {
+        	predicados.add(builder.equal(root.get(DISTRIBUIDORA).get(MUNICIPIO).get(CODIGO), municipio));
+        }
+
+        if (ObjectUtil.isNotNull(nomeMunicipio)) {
+        	predicados.add(builder.like(root.get(DISTRIBUIDORA).get(MUNICIPIO).get(NOME), "%" + nomeMunicipio + "%"));
+        }
+
+        if (ObjectUtil.isNotNull(bandeira)) {
+        	predicados.add(builder.equal(root.get(PRODUTO).get(BANDEIRA).get(CODIGO), bandeira));
+        }
+
+		query.select(builder.avg(root.get(campo)));
+		query.where(predicados.toArray(new Predicate [predicados.size()]));
+
+		return getEntityManager().createQuery(query).getSingleResult();
+	}
 
 }

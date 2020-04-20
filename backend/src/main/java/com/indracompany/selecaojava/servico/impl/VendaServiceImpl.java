@@ -173,4 +173,20 @@ public class VendaServiceImpl implements VendaService {
 		}
 	}
 
+	@Override
+	public VendaDTO obterMedia(Long municipio, String nomeMunicipio, Long bandeira) {
+
+		VendaDTO retorno = null;
+		try {
+
+			retorno = this.dao.obterMedia(municipio, nomeMunicipio, bandeira);
+
+		} catch (PersistenceException e) {
+			LOG.error(e.getMessage(), e);
+			throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO));
+		}
+
+		return retorno;
+	}
+
 }

@@ -11,6 +11,8 @@ import { MessageDTO } from 'src/app/shared/model/message.dto';
 import { ImportacaoArquivoService } from 'src/app/shared/services/importacao-arquivo.service';
 import * as $ from 'jquery';
 import { OptionDTO } from 'src/app/shared/model/options.dto';
+import { MunicipioDTO } from 'src/app/shared/model/municipio.dto';
+import { BandeiraDTO } from 'src/app/shared/model/bandeira.dto';
 
 @Component({
   selector: 'app-historico-precos',
@@ -31,6 +33,7 @@ export class HistoricoPrecosComponent implements OnInit {
   isDataColeta = false;
   isDistribuidora = false;
   isRegiao = false;
+  isBandeira = false;
 
   constructor(
     private msg: MsgService,
@@ -86,6 +89,28 @@ export class HistoricoPrecosComponent implements OnInit {
     }
 
     this.doPaginator();
+  }
+
+  getPrecoMedioMunicipio(municio: MunicipioDTO) {
+    this.historicoPrecoService.mediaPorMunicio(municio.codigo)
+      .subscribe((response) => {
+        this.venda = response.data;
+        this.isBandeira = false;
+      },
+      (response) => {
+        this.msg.show(response.error.messages[0]);
+      });
+  }
+
+  getPrecoMedioBandeira(bandeira: BandeiraDTO) {
+    this.historicoPrecoService.mediaPorBandeira(bandeira.codigo)
+      .subscribe((response) => {
+        this.venda = response.data;
+        this.isBandeira = true;
+      },
+      (response) => {
+        this.msg.show(response.error.messages[0]);
+      });
   }
 
   onChangeQuantPage() {

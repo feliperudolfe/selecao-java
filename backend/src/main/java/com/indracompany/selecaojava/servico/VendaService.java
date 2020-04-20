@@ -76,4 +76,15 @@ public interface VendaService {
 	 */
 	void atualizar(Long codigo, VendaDTO vendaDTO);
 
+	/**
+	 * Obter média de preço por municipio e/ou bandeira
+	 *
+	 * @author 	Felipe Rudolfe Carvalho Pinheiro
+	 * @since   20 de abr de 2020
+	 * @param 	municipio
+	 * @param 	nomeMunicipio
+	 * @param 	bandeira
+	 */
+	VendaDTO obterMedia(Long municipio, String nomeMunicipio, Long bandeira);
+
 }

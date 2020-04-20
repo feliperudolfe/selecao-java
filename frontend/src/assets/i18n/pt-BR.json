@@ -102,6 +102,11 @@
       "title": "Upload de arquivo",
       "campo": "Arquivo CSV"
     },
+    "media-venda": {
+      "title": "Média de preços",
+      "por-municipio": "por município",
+      "por-bandeira": "por bandeira"
+    },
     "venda": {
       "title": "Venda",
       "dataColeta": "Data de Coleta",

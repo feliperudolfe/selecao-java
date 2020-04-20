@@ -48,9 +48,12 @@
 						<tr>
 							<th scope="col">{{'private.historico.table.dataColeta' | translate}}</th>
 							<th scope="col">{{'private.regiao' | translate}}</th>
+							<th scope="col">{{'private.uf' | translate}}</th>
+							<th scope="col">{{'private.municipio' | translate}}</th>
 							<th scope="col">{{'private.historico.table.valorVenda' | translate}}</th>
 							<th scope="col">{{'private.historico.table.valorCompra' | translate}}</th>
 							<th scope="col">{{'private.historico.table.produto' | translate}}</th>
+							<th scope="col">{{'private.historico.table.bandeira' | translate}}</th>
 							<th scope="col">{{'private.historico.table.distribuidora' | translate}}</th>
 							<th scope="col" style="min-width: 115px;" >#</th>
 						</tr>
@@ -63,9 +66,16 @@
 							<td>
 								<a href="#" [routerLink]="['/private/historico-precos/por-regiao', item.distribuidora.municipio.uf.regiao]" onclick="return false;">{{item.distribuidora.municipio.uf.regiao}}</a>
 							</td>
-							<td>{{item.valorVenda}}</td>
-							<td>{{item.valorCompra}}</td>
+							<td>{{item.distribuidora.municipio.uf.codigo}}</td>
+							<td>
+								<a href="#" data-toggle="modal" data-target="#media-venda-modal" (click)="getPrecoMedioMunicipio(item.distribuidora.municipio)" onclick="return false;">{{item.distribuidora.municipio.nome}}</a>
+							</td>
+							<td>{{item.valorVenda | currency : 'R$'}}</td>
+							<td>{{item.valorCompra | currency : 'R$'}}</td>
 							<td>{{item.produto.nome}}</td>
+							<td>
+								<a href="#" data-toggle="modal" data-target="#media-venda-modal" (click)="getPrecoMedioBandeira(item.produto.bandeira)" onclick="return false;">{{item.produto.bandeira.nome}}</a>
+							</td>
 							<td>
 								<a href="#" [routerLink]="['/private/historico-precos/por-distribuidora', item.distribuidora.codigo]" onclick="return false;">{{item.distribuidora.nome}}</a>
 							</td>
@@ -152,17 +162,17 @@
 
               <div class="col-md-4">
                 <label>{{'private.venda.dataColeta' | translate}}:</label>
-                <p class="text-left">{{venda.dataColeta}}</p>
+                <p class="text-left">{{venda?.dataColeta}}</p>
               </div>
 
               <div class="col-md-4">
                 <label>{{'private.venda.valorVenda' | translate}}:</label>
-                <p class="text-left">{{venda.valorVenda}}</p>
+                <p class="text-left">{{venda?.valorVenda | currency : 'R$'}}</p>
               </div>
 
               <div class="col-md-4">
                 <label >{{'private.venda.valorCompra' | translate}}:</label>
-                <p class="text-left">{{venda.valorCompra}}</p>
+                <p class="text-left">{{venda?.valorCompra | currency : 'R$'}}</p>
               </div>
 
 			</div>
@@ -175,17 +185,17 @@
 
 				<div class="col-md-4">
 					<label>{{'private.produto.nome' | translate}}:</label>
-					<p class="text-left">{{venda.produto.nome}}</p>
+					<p class="text-left">{{venda?.produto?.nome}}</p>
 				</div>
 
 				<div class="col-md-4">
 					<label>{{'private.produto.unidadeMedida' | translate}}:</label>
-					<p class="text-left">{{venda.produto.unidadeMedida}}</p>
+					<p class="text-left">{{venda?.produto?.unidadeMedida}}</p>
 				</div>
 
 				<div class="col-md-4">
 					<label>{{'private.bandeira' | translate}}:</label>
-					<p class="text-left">{{venda.produto.bandeira.nome}}</p>
+					<p class="text-left">{{venda?.produto?.bandeira.nome}}</p>
 				</div>
 
 			</div>
@@ -198,12 +208,12 @@
 
 				<div class="col-md-4">
 					<label>{{'private.distribuidora.cnpj' | translate}}:</label>
-					<p class="text-left">{{venda.distribuidora.cnpj}}</p>
+					<p class="text-left">{{venda?.distribuidora?.cnpj}}</p>
 				</div>
 
 				<div class="col-md-8">
 					<label>{{'private.distribuidora.nome' | translate}}:</label>
-					<p class="text-left">{{venda.distribuidora.nome}}</p>
+					<p class="text-left">{{venda?.distribuidora?.nome}}</p>
 				</div>
 
 			</div>
@@ -216,17 +226,17 @@
 
 				<div class="col-md-6">
 					<label>{{'private.municipio' | translate}}:</label>
-					<p class="text-left">{{venda.distribuidora.municipio.nome}}</p>
+					<p class="text-left">{{venda?.distribuidora?.municipio?.nome}}</p>
 				</div>
 
 				<div class="col-md-3">
 					<label>{{'private.uf' | translate}}:</label>
-					<p class="text-left">{{venda.distribuidora.municipio.uf.codigo}}</p>
+					<p class="text-left">{{venda?.distribuidora?.municipio?.uf?.codigo}}</p>
 				</div>
 
 				<div class="col-md-3">
 					<label>{{'private.regiao' | translate}}:</label>
-					<p class="text-left">{{venda.distribuidora.municipio.uf.regiao}}</p>
+					<p class="text-left">{{venda?.distribuidora?.municipio?.uf?.regiao}}</p>
 				</div>
 
 			</div>
@@ -255,14 +265,12 @@
 		  </div>
 
 			<div class="modal-body" style="min-height: 320px;">
-
 				<input type="file" id="customFile" accept=".csv" (change)="fileProgress($event)">
-				<button class="btn btn-primary" [disabled]="!previewUrl" (click)="upload()">SaveFile</button>
-
 			</div>
 
 			<!-- Modal footer -->
 			<div class="modal-footer">
+				<button class="btn btn-primary float-right" [disabled]="!previewUrl" (click)="upload()">{{'button.save' | translate}}</button>
 				<button id="importar-csv-btn" type="button" (click)="limparVenda()" class="btn btn-danger" data-dismiss="modal">{{'button.close' | translate}}</button>
 			</div>
 
@@ -270,5 +278,49 @@
       </div>
 	</div>
 	<!-- Modal - importar-csv-modal - END -->
+
+	<!-- Modal - media-venda-modal -->
+	<div class="modal fade" data-backdrop="static" id="media-venda-modal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title" *ngIf="isBandeira" >{{'private.media-venda.title' | translate}} {{'private.media-venda.por-bandeira' | translate}}</h4>
+					<h4 class="modal-title" *ngIf="!isBandeira" >{{'private.media-venda.title' | translate}} {{'private.media-venda.por-municipio' | translate}}</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<div class="modal-body" style="min-height: 320px;" *ngIf="venda">
+
+					<h5>
+						{{'private.media-venda.title' | translate}}
+					</h5>
+
+					<div class="row">
+
+						<div class="col-md-4">
+							<label>{{'private.venda.valorVenda' | translate}}:</label>
+							<p class="text-left">{{venda?.valorVenda | currency : 'R$'}}</p>
+						</div>
+
+						<div class="col-md-4">
+							<label>{{'private.venda.valorCompra' | translate}}:</label>
+							<p class="text-left">{{venda?.valorCompra | currency : 'R$'}}</p>
+						</div>
+
+					</div>
+
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button id="media-venda-btn" type="button" (click)="limparVenda()" class="btn btn-danger" data-dismiss="modal">{{'button.close' | translate}}</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- Modal - media-venda-modal - END -->
 
 </div>

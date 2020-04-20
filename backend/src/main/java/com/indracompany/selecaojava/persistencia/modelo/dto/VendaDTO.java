@@ -33,6 +33,12 @@ public class VendaDTO extends DTO {
 		super();
 	}
 
+	public VendaDTO(Double valorVenda, Double valorCompra) {//SONAR
+		super();
+		this.valorVenda = valorVenda;
+		this.valorCompra = valorCompra;
+	}
+
 	public VendaDTO(
 			Long codigo,
 			Date dataColeta,

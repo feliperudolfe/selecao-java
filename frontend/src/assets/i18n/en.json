@@ -102,6 +102,11 @@
       "title": "File upload",
       "campo": "CSV file"
     },
+    "media-venda": {
+      "title": "Average prices",
+      "por-municipio": "per county",
+      "por-bandeira": "por brand"
+    },
     "venda": {
       "title": "Sale",
       "dataColeta": "Collection Date",

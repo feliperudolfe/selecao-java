@@ -7,11 +7,14 @@ import javax.ws.rs.QueryParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.indracompany.comuns.modelo.dto.Resposta;
+import com.indracompany.selecaojava.persistencia.modelo.dto.VendaDTO;
 import com.indracompany.selecaojava.persistencia.modelo.dto.VendaPaginadorDTO;
 import com.indracompany.selecaojava.persistencia.modelo.tipo.RegiaoEnum;
 import com.indracompany.selecaojava.recurso.rest.Endpoint;
@@ -33,7 +36,7 @@ public class HistoricoPrecosEndpoint implements Endpoint {
 	@Autowired
 	private VendaService service;
 
-	@GetMapping()
+	@GetMapping
 	@ApiOperation(
 		value = "Listar histórico de preços",
 		notes = "Listar histórico de preços do sistema")
@@ -54,7 +57,7 @@ public class HistoricoPrecosEndpoint implements Endpoint {
 				code = 500,
 				message = "Internal error")
 	    })
-	public VendaPaginadorDTO getlist(
+	public VendaPaginadorDTO listar(
 			@DefaultValue("0")
 			@QueryParam("currentPage")
 			Integer currentPage,
@@ -70,6 +73,40 @@ public class HistoricoPrecosEndpoint implements Endpoint {
 			String regiao) {
 
 		return this.service.listar(new VendaPaginadorDTO(currentPage, sizePage, dataColeta, distribuidora, RegiaoEnum.getPorNome(regiao)));
+	}
+
+	@GetMapping(path = "media")
+	@ApiOperation(
+		value = "Obter media de precos",
+		notes = "Obter media de precos do sistema")
+	    @ApiResponses(value = {
+			@ApiResponse(
+				code = 200,
+				message = "Success"),
+			@ApiResponse(
+				code = 400,
+				message = "Bad request"),
+			@ApiResponse(
+					code = 401,
+					message = "Unauthorized"),
+			@ApiResponse(
+				code = 404,
+				message = "Not found"),
+	    	@ApiResponse(
+				code = 500,
+				message = "Internal error")
+	    })
+	public ResponseEntity<Resposta> obterMedia(
+			@QueryParam("municipio")
+			Long municipio,
+			@QueryParam("nomeMunicipio")
+			String nomeMunicipio,
+			@QueryParam("bandeira")
+			Long bandeira) {
+
+		VendaDTO vendaDTO = this.service.obterMedia(municipio, nomeMunicipio, bandeira);
+
+		return criarRespostaData(vendaDTO);
 	}
 
 }

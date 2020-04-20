@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  version: '1.0.0-SNAPSHOT',
+  version: '0.0.1',
   urlbase: '@BACKEND_ADDRESS@'
 };

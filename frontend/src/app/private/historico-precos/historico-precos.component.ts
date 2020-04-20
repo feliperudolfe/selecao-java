@@ -10,6 +10,7 @@ import { VendaService } from 'src/app/shared/services/venda.service';
 import { MessageDTO } from 'src/app/shared/model/message.dto';
 import { ImportacaoArquivoService } from 'src/app/shared/services/importacao-arquivo.service';
 import * as $ from 'jquery';
+import { OptionDTO } from 'src/app/shared/model/options.dto';
 
 @Component({
   selector: 'app-historico-precos',
@@ -25,6 +26,8 @@ export class HistoricoPrecosComponent implements OnInit {
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
 
+  quantPaginas: Array<OptionDTO>;
+
   constructor(
     private msg: MsgService,
     private location: Location,
@@ -36,15 +39,34 @@ export class HistoricoPrecosComponent implements OnInit {
 
   ngOnInit() {
 
+    if (this.paginator === undefined) {
+      this.paginator = {
+        currentPage: 0
+      }
+    }
+
+    this.quantPaginas = [{codigo: 10, valor: '10'}, {codigo: 20, valor: '20'}, {codigo: 50, valor: '50'}, {codigo: 100, valor: '100'}];
+    this.paginator.sizePage = this.quantPaginas[0].codigo;
+
     this.router.queryParams.subscribe((params) => {
       const pageatual = params.currentPage;
       if (pageatual) {
-        this.paginator = {
-          currentPage: pageatual
-        }
+        this.paginator.currentPage = pageatual;
       }
     });
 
+    if (this.paginator === undefined) {
+      this.paginator = {
+        currentPage: 0
+      }
+    }
+
+    this.doPaginator();
+  }
+
+  onChangeQuantPage() {
+
+    console.log("this.paginator.sizePage: ", this.paginator.sizePage);
     this.doPaginator();
   }
 

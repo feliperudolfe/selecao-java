@@ -19,12 +19,12 @@ public class VendaPaginadorDTO extends PaginadorDTO<VendaDTO> {
 	private static final long serialVersionUID = -7823976973357387428L;
 
 	public VendaPaginadorDTO(Integer currentPage, Integer sizePage, Date dataColeta) {
-		super((currentPage != null) ? currentPage : 0 , (sizePage != null) ? sizePage : 1000);
+		super((currentPage != null) ? currentPage : 0 , (sizePage != null) ? sizePage : 100);
 		this.dataColeta = dataColeta;
 	}
 
 	public VendaPaginadorDTO(Integer currentPage, Integer sizePage, Long count, List<VendaDTO> list) {
-		super((currentPage != null) ? currentPage : 0 , (sizePage != null) ? sizePage : 1000, count, list);
+		super((currentPage != null) ? currentPage : 0 , (sizePage != null) ? sizePage : 100, count, list);
 	}
 
 	@QueryParam("dataColeta")

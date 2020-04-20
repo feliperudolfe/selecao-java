@@ -13,6 +13,17 @@
 	<div class="row">
 
 		<div class="col-md-12" *ngIf="paginator">
+
+
+			<div class="row" style="margin-bottom: 20px;" >
+				<div class="col-md-2 xs-4">
+					<label class="col-form-label">{{'por-pagina' | translate}}:</label>
+					<select class="form-control" [(ngModel)]="paginator.sizePage" (change)="onChangeQuantPage()">
+						<option *ngFor="let qtd of quantPaginas" value="{{qtd.codigo}}">{{qtd.valor}}</option>
+					</select>
+				</div>
+			</div>
+
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<thead>
@@ -22,7 +33,7 @@
 							<th scope="col">{{'private.historico.table.valorCompra' | translate}}</th>
 							<th scope="col">{{'private.historico.table.produto' | translate}}</th>
 							<th scope="col">{{'private.historico.table.distribuidora' | translate}}</th>
-							<th scope="col" style="min-width: 135px;" >#</th>
+							<th scope="col" style="min-width: 115px;" >#</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -48,11 +59,6 @@
 									<i class="fas fa-trash-alt"></i>
 								</button>
 
-								<button type="button" title="{{'button.abandon' | translate}}"
-									(click)="abandonar(item.codigo)" class="btn btn-warning btn-circle btn-xs">
-									<i class="fas fa-sign-out-alt"></i>
-								</button>
-
 							</td>
 						</tr>
 					</tbody>
@@ -61,6 +67,15 @@
 
 			<div style="margin-left: 5px;">
 				<strong>{{paginator.count}} {{'private.historico.table.registros' | translate}}</strong>
+			</div>
+
+			<div class="row" style="margin-bottom: 20px;" >
+				<div class="col-md-2 xs-4">
+					<label class="col-form-label">{{'por-pagina' | translate}}:</label>
+					<select class="form-control" [(ngModel)]="paginator.sizePage" (change)="onChangeQuantPage()">
+						<option *ngFor="let qtd of quantPaginas" value="{{qtd.codigo}}">{{qtd.valor}}</option>
+					</select>
+				</div>
 			</div>
 
 			<nav aria-label="Page navigation example" *ngIf="isPagination()">

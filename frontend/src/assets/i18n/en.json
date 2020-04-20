@@ -82,7 +82,7 @@
         "visualizar": "View sale"
       },
       "usuario": {
-        "alterar-senha" : "Change Password"
+        "alterar-senha": "Change Password"
       }
     },
     "historico": {
@@ -103,31 +103,32 @@
       "campo": "CSV file"
     },
     "venda": {
-        "title": "Sale",
-        "dataColeta": "Collection Date",
-        "valorVenda": "Sale price",
-        "valorCompra": "Purchase price"
-      },
-      "produto": {
-        "nome": "Product",
-        "unidadeMedida": "Unit of measurement"
-      },
-      "distribuidora": {
-        "cnpj": "CNPJ Distributor",
-        "nome": "Distributor"
-      },
-      "bandeira": "Brand",
-      "localidade": "Locality",
-      "municipio": "County",
-      "uf": "State",
-      "regiao": "Region",
-      "usuario": {
-        "title": "User data",
-        "email": "Email",
-        "senha": "Password",
-        "nova-senha": "New password",
-        "confirmar-senha": "Confirm password",
-        "senha-atual": "Current password"
-      }
+      "title": "Sale",
+      "dataColeta": "Collection Date",
+      "valorVenda": "Sale price",
+      "valorCompra": "Purchase price"
+    },
+    "produto": {
+      "nome": "Product",
+      "unidadeMedida": "Unit of measurement"
+    },
+    "distribuidora": {
+      "cnpj": "CNPJ Distributor",
+      "nome": "Distributor"
+    },
+    "bandeira": "Brand",
+    "localidade": "Locality",
+    "municipio": "County",
+    "uf": "State",
+    "regiao": "Region",
+    "usuario": {
+      "title": "User data",
+      "email": "Email",
+      "senha": "Password",
+      "nova-senha": "New password",
+      "confirmar-senha": "Confirm password",
+      "senha-atual": "Current password"
+    },
+    "por": "History grouped by"
   }
 }

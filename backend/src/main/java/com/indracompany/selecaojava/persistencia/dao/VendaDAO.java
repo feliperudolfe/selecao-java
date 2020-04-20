@@ -26,6 +26,9 @@ public class VendaDAO extends DAO {
 	private static final String VALOR_COMPRA = "valorCompra";
 	private static final String PRODUTO = "produto";
 	private static final String DISTRIBUIDORA = "distribuidora";
+	private static final String MUNICIPIO = "municipio";
+	private static final String ESTADO = "uf";
+	private static final String REGIAO = "regiao";
 
 	/**
 	 * Obter registros de forma paginada
@@ -88,6 +91,14 @@ public class VendaDAO extends DAO {
         List<Predicate> predicados = new ArrayList<>();
         if (ObjectUtil.isNotNull(paginadorDTO.getDataColeta())) {
         	predicados.add(builder.equal(root.get(DATA_COLETA), paginadorDTO.getDataColeta()));
+        }
+
+        if (ObjectUtil.isNotNull(paginadorDTO.getDistribuidora())) {
+        	predicados.add(builder.equal(root.get(DISTRIBUIDORA).get(CODIGO), paginadorDTO.getDistribuidora()));
+        }
+
+        if (ObjectUtil.isNotNull(paginadorDTO.getRegiao())) {
+        	predicados.add(builder.equal(root.get(DISTRIBUIDORA).get(MUNICIPIO).get(ESTADO).get(REGIAO), paginadorDTO.getRegiao()));
         }
 
         return predicados;

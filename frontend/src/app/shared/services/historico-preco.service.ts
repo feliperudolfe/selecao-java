@@ -15,6 +15,8 @@ export class HistoricoPrecoService {
 
   listar(paginator: HistoricoPrecoPaginatorDTO): Observable<HistoricoPrecoPaginatorDTO> {
 
+    console.log("paginator: ", paginator);
+
     let httpParams = new HttpParams().set('sortingColumn', 'name');
     for (const i in paginator) {
       if (i !== 'list' && paginator[i] != null) {

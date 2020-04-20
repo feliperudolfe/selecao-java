@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.indracompany.selecaojava.persistencia.modelo.dto.VendaPaginadorDTO;
+import com.indracompany.selecaojava.persistencia.modelo.tipo.RegiaoEnum;
 import com.indracompany.selecaojava.recurso.rest.Endpoint;
 import com.indracompany.selecaojava.servico.VendaService;
 
@@ -62,9 +63,13 @@ public class HistoricoPrecosEndpoint implements Endpoint {
 			Integer sizePage,
 			@DateTimeFormat(pattern = "dd/MM/yyyy")
 			@QueryParam("dataColeta")
-			Date dataColeta) {
+			Date dataColeta,
+			@QueryParam("distribuidora")
+			Long distribuidora,
+			@QueryParam("regiao")
+			String regiao) {
 
-		return this.service.listar(new VendaPaginadorDTO(currentPage, sizePage, dataColeta));
+		return this.service.listar(new VendaPaginadorDTO(currentPage, sizePage, dataColeta, distribuidora, RegiaoEnum.getPorNome(regiao)));
 	}
 
 }

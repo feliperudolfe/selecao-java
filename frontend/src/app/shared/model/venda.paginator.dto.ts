@@ -5,4 +5,7 @@ export interface HistoricoPrecoPaginatorDTO {
   sizePage?: number;
   count?: number;
   list?: Array<VendaDTO>;
+  dataColeta?: string;
+  distribuidora?: number;
+  regiao?: string
 }

@@ -20,13 +20,17 @@ import { OptionDTO } from 'src/app/shared/model/options.dto';
 export class HistoricoPrecosComponent implements OnInit {
 
   paginator: HistoricoPrecoPaginatorDTO;
-  venda: VendaDTO
+  venda: VendaDTO;
   fileData: File = null;
   previewUrl: any = null;
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
 
   quantPaginas: Array<OptionDTO>;
+
+  isDataColeta = false;
+  isDistribuidora = false;
+  isRegiao = false;
 
   constructor(
     private msg: MsgService,
@@ -42,7 +46,7 @@ export class HistoricoPrecosComponent implements OnInit {
     if (this.paginator === undefined) {
       this.paginator = {
         currentPage: 0
-      }
+      };
     }
 
     this.quantPaginas = [{codigo: 10, valor: '10'}, {codigo: 20, valor: '20'}, {codigo: 50, valor: '50'}, {codigo: 100, valor: '100'}];
@@ -55,18 +59,36 @@ export class HistoricoPrecosComponent implements OnInit {
       }
     });
 
+    this.router.params.subscribe((params) => {
+      const dataColeta = params.dataColeta;
+      if (dataColeta) {
+        this.isDataColeta = true
+        this.paginator.dataColeta = dataColeta;
+      }
+
+      const idDistribuidora = params.idDistribuidora;
+      if (idDistribuidora) {
+        this.isDistribuidora = true
+        this.paginator.distribuidora = idDistribuidora;
+      }
+
+      const regiao = params.regiao;
+      if (regiao) {
+        this.isRegiao = true
+        this.paginator.regiao = regiao;
+      }
+    });
+
     if (this.paginator === undefined) {
       this.paginator = {
         currentPage: 0
-      }
+      };
     }
 
     this.doPaginator();
   }
 
   onChangeQuantPage() {
-
-    console.log("this.paginator.sizePage: ", this.paginator.sizePage);
     this.doPaginator();
   }
 
@@ -86,7 +108,7 @@ export class HistoricoPrecosComponent implements OnInit {
     reader.readAsDataURL(this.fileData);
     reader.onload = (_event) => {
       this.previewUrl = reader.result;
-    }
+    };
   }
 
   upload() {

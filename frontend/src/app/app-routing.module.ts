@@ -45,6 +45,18 @@ const routes: Routes = [
         component: EditarVendaComponent
       },
       {
+        path: 'historico-precos/por-regiao/:regiao',
+        component: HistoricoPrecosComponent
+      },
+      {
+        path: 'historico-precos/por-distribuidora/:idDistribuidora',
+        component: HistoricoPrecosComponent
+      },
+      {
+        path: 'historico-precos/por-data-coleta/:dataColeta',
+        component: HistoricoPrecosComponent
+      },
+      {
         path: 'usuario',
         component: UsuarioComponent
       },

@@ -1,13 +1,31 @@
 <div>
 
-	<h2 class="mt-5 title-page">
-
+	<h2 class="mt-5 title-page" *ngIf="!isDataColeta && !isDistribuidora && !isRegiao" >
 		<span class="title-span">{{'private.historico.title' | translate}}</span>
-
 		<button title="{{'button.upload' | translate}}" type="button" data-toggle="modal" data-target="#importar-csv-modal" class="btn btn-primary btn-circle btn-sm">
 			<i class="fas fa-upload"></i>
 		</button>
+	</h2>
 
+	<h2 class="mt-5 title-page" *ngIf="isDataColeta" >
+		<span class="title-span">{{'private.por' | translate}} {{'private.venda.dataColeta' | translate}}</span>
+		<button title="{{'button.upload' | translate}}" type="button" [routerLink]="['/private/historico-precos']" class="btn btn-primary btn-circle btn-sm">
+			<i class="fas fa-angle-left"></i>
+		</button>
+	</h2>
+
+	<h2 class="mt-5 title-page" *ngIf="isDistribuidora" >
+		<span class="title-span">{{'private.por' | translate}} {{'private.distribuidora.nome' | translate}}</span>
+		<button title="{{'button.upload' | translate}}" type="button" [routerLink]="['/private/historico-precos']" class="btn btn-primary btn-circle btn-sm">
+			<i class="fas fa-angle-left"></i>
+		</button>
+	</h2>
+
+	<h2 class="mt-5 title-page" *ngIf="isRegiao" >
+		<span class="title-span">{{'private.por' | translate}} {{'private.regiao' | translate}}</span>
+		<button title="{{'button.upload' | translate}}" type="button" [routerLink]="['/private/historico-precos']" class="btn btn-primary btn-circle btn-sm">
+			<i class="fas fa-angle-left"></i>
+		</button>
 	</h2>
 
 	<div class="row">
@@ -29,6 +47,7 @@
 					<thead>
 						<tr>
 							<th scope="col">{{'private.historico.table.dataColeta' | translate}}</th>
+							<th scope="col">{{'private.regiao' | translate}}</th>
 							<th scope="col">{{'private.historico.table.valorVenda' | translate}}</th>
 							<th scope="col">{{'private.historico.table.valorCompra' | translate}}</th>
 							<th scope="col">{{'private.historico.table.produto' | translate}}</th>
@@ -38,11 +57,18 @@
 					</thead>
 					<tbody>
 						<tr *ngFor="let item of paginator.list">
-							<td>{{item.dataColeta}}</td>
+							<td>
+								<a href="#" [routerLink]="['/private/historico-precos/por-data-coleta', item.dataColeta]" onclick="return false;">{{item.dataColeta}}</a>
+							</td>
+							<td>
+								<a href="#" [routerLink]="['/private/historico-precos/por-regiao', item.distribuidora.municipio.uf.regiao]" onclick="return false;">{{item.distribuidora.municipio.uf.regiao}}</a>
+							</td>
 							<td>{{item.valorVenda}}</td>
 							<td>{{item.valorCompra}}</td>
 							<td>{{item.produto.nome}}</td>
-							<td>{{item.distribuidora.nome}}</td>
+							<td>
+								<a href="#" [routerLink]="['/private/historico-precos/por-distribuidora', item.distribuidora.codigo]" onclick="return false;">{{item.distribuidora.nome}}</a>
+							</td>
 							<td>
 
 								<button data-toggle="modal" data-target="#venda-visualizar-modal" (click)="visualizarVenda(item)" title="{{'button.view' | translate}}" type="button" class="btn btn-primary btn-circle btn-xs">

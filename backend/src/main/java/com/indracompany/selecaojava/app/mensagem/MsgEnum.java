@@ -18,6 +18,7 @@ public enum MsgEnum {
 	MSG005,
 	MSG006,
 	MSG007,
+	MSG008
 
 	;
 

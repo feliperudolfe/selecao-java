@@ -27,6 +27,7 @@ public class UsuarioMapper {
 		retorno.setEmail(userDTO.getEmail());
 		retorno.setSenha(userDTO.getPassword());
 		retorno.setConfirmarSenha(userDTO.getConfirmPassword());
+		retorno.setSenhaAtual(userDTO.getCurrentPassword());
 
 		return retorno;
 	}

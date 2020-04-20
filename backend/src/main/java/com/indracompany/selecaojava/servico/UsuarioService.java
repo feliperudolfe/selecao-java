@@ -46,4 +46,13 @@ public interface UsuarioService {
 	 */
 	Usuario buscarPorEmailESenha(String email, String senha);
 
+	/**
+	 * Editar usuário na aplicação
+	 *
+	 * @author 	Felipe Rudolfe Carvalho Pinheiro
+	 * @since   20 de abr de 2020
+	 * @param 	usuario
+	 */
+	void editar(String token, Usuario usuario);
+
 }

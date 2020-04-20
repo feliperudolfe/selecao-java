@@ -36,6 +36,9 @@ public class Usuario extends Entidade<Long> {
 	@Transient
 	private String confirmarSenha;
 
+	@Transient
+	private String senhaAtual;
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -66,6 +69,14 @@ public class Usuario extends Entidade<Long> {
 
 	public void setConfirmarSenha(String confirmarSenha) {
 		this.confirmarSenha = confirmarSenha;
+	}
+
+	public String getSenhaAtual() {
+		return senhaAtual;
+	}
+
+	public void setSenhaAtual(String senhaAtual) {
+		this.senhaAtual = senhaAtual;
 	}
 
 	@Override

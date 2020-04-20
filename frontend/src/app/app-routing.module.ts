@@ -8,6 +8,7 @@ import { AuthGuard } from './shared/auth/auth.guard';
 import { PublicGuard } from './shared/auth/public.guard';
 import { HistoricoPrecosComponent } from './private/historico-precos/historico-precos.component';
 import { EditarVendaComponent } from './private/historico-precos/editar-venda/editar-venda.component';
+import { UsuarioComponent } from './private/usuario/usuario.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
       {
         path: 'historico-precos/edit/:idVenda',
         component: EditarVendaComponent
+      },
+      {
+        path: 'usuario',
+        component: UsuarioComponent
       },
     ]
   }

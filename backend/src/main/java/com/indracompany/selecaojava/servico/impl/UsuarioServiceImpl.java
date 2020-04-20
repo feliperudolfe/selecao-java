@@ -132,4 +132,32 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return retorno;
 	}
 
+	@Override
+	public void editar(String token, Usuario usuario) {
+
+		try {
+
+			Usuario userAtual = this.buscarPorToken(token);
+			if (ObjectUtil.isNull(userAtual)) {
+				throw new NegocioException(Mensagem.ALERTA, Msg.get(MsgEnum.MSG004));
+			}
+
+			if (!usuario.getSenha().equals(usuario.getConfirmarSenha())) {
+				throw new NegocioException(Mensagem.ALERTA, Msg.get(MsgEnum.MSG005));
+			}
+
+			if (!userAtual.getSenha().equals(usuario.getSenhaAtual())) {
+				throw new NegocioException(Mensagem.ALERTA, Msg.get(MsgEnum.MSG008));
+			}
+
+			userAtual.setSenha(usuario.getSenha());
+
+			this.repository.save(userAtual);
+
+		} catch (PersistenceException e) {
+			LOG.error(e.getMessage(), e);
+			throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO));
+		}
+	}
+
 }

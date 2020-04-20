@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,22 +48,22 @@ public class UsuarioEndpoint implements Endpoint {
 	@ApiOperation(
 		value = "Registrar usuário",
 		notes = "Registrar usuário no sistema")
-    @ApiResponses(value = {
-		@ApiResponse(
-			code = 200,
-			message = "Success"),
-		@ApiResponse(
-			code = 400,
-			message = "Bad request"),
-		@ApiResponse(
-			code = 404,
-			message = "Not found"),
-    	@ApiResponse(
-			code = 500,
-			message = "Internal error")
-    })
+	    @ApiResponses(value = {
+			@ApiResponse(
+				code = 200,
+				message = "Success"),
+			@ApiResponse(
+				code = 400,
+				message = "Bad request"),
+			@ApiResponse(
+				code = 404,
+				message = "Not found"),
+	    	@ApiResponse(
+				code = 500,
+				message = "Internal error")
+	    })
 	public ResponseEntity<Resposta> cadastrar(
-			@ApiParam(value = "User object that to be registered", required = true)
+			@ApiParam(value = "Usuário", required = true)
 			@NotNull @Valid @RequestBody UserDTO userDTO) {
 
 		Usuario user = UsuarioMapper.toEntity(userDTO);
@@ -71,27 +72,57 @@ public class UsuarioEndpoint implements Endpoint {
 		return criarResposta(new Resposta(Mensagem.SUCESSO, Msg.get(MsgEnum.MSG_SUCESSO)));
 	}
 
-	@GetMapping
+	@PutMapping
+	@ApiOperation(
+		value = "Editar usuário",
+		notes = "Editar usuário no sistema")
+	    @ApiResponses(value = {
+			@ApiResponse(
+				code = 200,
+				message = "Success"),
+			@ApiResponse(
+				code = 400,
+				message = "Bad request"),
+			@ApiResponse(
+				code = 404,
+				message = "Not found"),
+	    	@ApiResponse(
+				code = 500,
+				message = "Internal error")
+	    })
+	public ResponseEntity<Resposta> editar(
+			@ApiParam(value = "Authorization token", required = true)
+			@RequestHeader(UsuarioServiceImpl.AUTHORRIZATION_HEADER_KEY) String token,
+			@ApiParam(value = "Usuário", required = true)
+			@NotNull @Valid @RequestBody UserDTO userDTO) {
+
+		Usuario user = UsuarioMapper.toEntity(userDTO);
+		this.service.editar(token, user);
+
+		return criarResposta(new Resposta(Mensagem.SUCESSO, Msg.get(MsgEnum.MSG_SUCESSO)));
+	}
+
+	@GetMapping(path = "get-dados")
 	@ApiOperation(
 		value = "Get authenticated user",
 		notes = "Get authenticated user in the system")
-    @ApiResponses(value = {
-		@ApiResponse(
-			code = 200,
-			message = "Success"),
-		@ApiResponse(
-			code = 400,
-			message = "Bad request"),
-		@ApiResponse(
-				code = 401,
-				message = "Unauthorized"),
-		@ApiResponse(
-			code = 404,
-			message = "Not found"),
-    	@ApiResponse(
-			code = 500,
-			message = "Internal error")
-    })
+	    @ApiResponses(value = {
+			@ApiResponse(
+				code = 200,
+				message = "Success"),
+			@ApiResponse(
+				code = 400,
+				message = "Bad request"),
+			@ApiResponse(
+					code = 401,
+					message = "Unauthorized"),
+			@ApiResponse(
+				code = 404,
+				message = "Not found"),
+	    	@ApiResponse(
+				code = 500,
+				message = "Internal error")
+	    })
 	public ResponseEntity<Resposta> getUser(
 			@ApiParam(value = "Authorization token", required = true)
 			@RequestHeader(UsuarioServiceImpl.AUTHORRIZATION_HEADER_KEY) String token) {

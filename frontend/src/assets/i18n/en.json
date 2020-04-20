@@ -73,12 +73,15 @@
   "private": {
     "menu": {
       "historico-precos": "Price history",
-      "usuarios": "Users",
+      "usuario": "User",
       "exit": "Exit"
     },
     "modal": {
       "venda": {
         "visualizar": "View sale"
+      },
+      "usuario": {
+        "alterar-senha" : "Change Password"
       }
     },
     "historico": {
@@ -116,6 +119,14 @@
       "localidade": "Locality",
       "municipio": "County",
       "uf": "State",
-      "regiao": "Region"
+      "regiao": "Region",
+      "usuario": {
+        "title": "User data",
+        "email": "Email",
+        "senha": "Password",
+        "nova-senha": "New password",
+        "confirmar-senha": "Confirm password",
+        "senha-atual": "Current password"
+      }
   }
 }

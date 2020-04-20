@@ -42,13 +42,11 @@ export class EditarVendaComponent implements OnInit {
 
     this.produtoService.listarOptions()
       .subscribe((result) => {
-        console.log("result: ", result);
         this.produtos = result;
       });
 
     this.distribuidoraService.listarOptions()
       .subscribe((result) => {
-        console.log("result: ", result);
         this.distribuidoras = result;
       });
 
@@ -59,9 +57,6 @@ export class EditarVendaComponent implements OnInit {
         this.vendaService.get(idVenda)
           .subscribe((result) => {
             if (result) {
-
-              console.log("result: ", result);
-
               this.venda = result.data;
               this.form.patchValue({
                 dataColeta: this.venda.dataColeta,
@@ -72,7 +67,6 @@ export class EditarVendaComponent implements OnInit {
               });
             }
           });
-
       }
     });
   }

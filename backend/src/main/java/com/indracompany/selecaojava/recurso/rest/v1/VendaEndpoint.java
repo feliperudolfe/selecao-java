@@ -46,23 +46,23 @@ public class VendaEndpoint implements Endpoint {
 	@ApiOperation(
 		value = "Obter venda por código",
 		notes = "Obter venda por código do sistema")
-    @ApiResponses(value = {
-		@ApiResponse(
-			code = 200,
-			message = "Success"),
-		@ApiResponse(
-			code = 400,
-			message = "Bad request"),
-		@ApiResponse(
-				code = 401,
-				message = "Unauthorized"),
-		@ApiResponse(
-			code = 404,
-			message = "Not found"),
-    	@ApiResponse(
-			code = 500,
-			message = "Internal error")
-    })
+	    @ApiResponses(value = {
+			@ApiResponse(
+				code = 200,
+				message = "Success"),
+			@ApiResponse(
+				code = 400,
+				message = "Bad request"),
+			@ApiResponse(
+					code = 401,
+					message = "Unauthorized"),
+			@ApiResponse(
+				code = 404,
+				message = "Not found"),
+	    	@ApiResponse(
+				code = 500,
+				message = "Internal error")
+	    })
 	public ResponseEntity<Resposta> get(
 			@ApiParam(value = "Código", required = true)
 			@Valid @NotNull @PathVariable("codigo") Long codigo) {
@@ -74,26 +74,26 @@ public class VendaEndpoint implements Endpoint {
 
 	@PutMapping(path = "/{codigo:[1-9][0-9]*}")
 	@ApiOperation(
-		value = "Deletar venda por código",
-		notes = "Deletar venda por código do sistema")
-    @ApiResponses(value = {
-		@ApiResponse(
-			code = 200,
-			message = "Success"),
-		@ApiResponse(
-			code = 400,
-			message = "Bad request"),
-		@ApiResponse(
-				code = 401,
-				message = "Unauthorized"),
-		@ApiResponse(
-			code = 404,
-			message = "Not found"),
-    	@ApiResponse(
-			code = 500,
-			message = "Internal error")
-    })
-	public ResponseEntity<Resposta> remover(
+		value = "Editar venda por código",
+		notes = "Editar venda por código do sistema")
+	    @ApiResponses(value = {
+			@ApiResponse(
+				code = 200,
+				message = "Success"),
+			@ApiResponse(
+				code = 400,
+				message = "Bad request"),
+			@ApiResponse(
+					code = 401,
+					message = "Unauthorized"),
+			@ApiResponse(
+				code = 404,
+				message = "Not found"),
+	    	@ApiResponse(
+				code = 500,
+				message = "Internal error")
+	    })
+	public ResponseEntity<Resposta> editar(
 			@ApiParam(value = "Código", required = true)
 			@Valid @NotNull @PathVariable("codigo") Long codigo,
 			@ApiParam(value = "Venda", required = true)
@@ -108,23 +108,23 @@ public class VendaEndpoint implements Endpoint {
 	@ApiOperation(
 		value = "Deletar venda por código",
 		notes = "Deletar venda por código do sistema")
-    @ApiResponses(value = {
-		@ApiResponse(
-			code = 200,
-			message = "Success"),
-		@ApiResponse(
-			code = 400,
-			message = "Bad request"),
-		@ApiResponse(
-				code = 401,
-				message = "Unauthorized"),
-		@ApiResponse(
-			code = 404,
-			message = "Not found"),
-    	@ApiResponse(
-			code = 500,
-			message = "Internal error")
-    })
+	    @ApiResponses(value = {
+			@ApiResponse(
+				code = 200,
+				message = "Success"),
+			@ApiResponse(
+				code = 400,
+				message = "Bad request"),
+			@ApiResponse(
+					code = 401,
+					message = "Unauthorized"),
+			@ApiResponse(
+				code = 404,
+				message = "Not found"),
+	    	@ApiResponse(
+				code = 500,
+				message = "Internal error")
+	    })
 	public ResponseEntity<Resposta> remover(
 			@ApiParam(value = "Código", required = true)
 			@Valid @NotNull @PathVariable("codigo") Long codigo) {

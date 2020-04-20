@@ -73,12 +73,15 @@
   "private": {
     "menu": {
       "historico-precos": "Histórico de preços",
-      "usuarios": "Usuários",
+      "usuario": "Usuário",
       "exit": "Sair"
     },
     "modal": {
       "venda": {
         "visualizar": "Visualizar venda"
+      },
+      "usuario": {
+        "alterar-senha" : "Alterar senha"
       }
     },
     "historico": {
@@ -116,6 +119,14 @@
     "localidade": "Localidade",
     "municipio": "Município",
     "uf": "UF",
-    "regiao": "Região"
+    "regiao": "Região",
+    "usuario": {
+      "title": "Dados do usuário",
+      "email": "E-mail",
+      "senha": "Senha",
+      "nova-senha": "Nova senha",
+      "confirmar-senha": "Confirmar senha",
+      "senha-atual": "Senha atual"
+    }
   }
 }

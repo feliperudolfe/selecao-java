@@ -16,6 +16,10 @@ import com.indracompany.selecaojava.persistencia.modelo.dto.VendaPaginadorDTO;
 import com.indracompany.selecaojava.recurso.rest.Endpoint;
 import com.indracompany.selecaojava.servico.VendaService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 /**
  * @author 	Felipe Rudolfe Carvalho Pinheiro
  * @since   18 de abr de 2020
@@ -29,6 +33,26 @@ public class HistoricoPrecosEndpoint implements Endpoint {
 	private VendaService service;
 
 	@GetMapping()
+	@ApiOperation(
+		value = "Listar histórico de preços",
+		notes = "Listar histórico de preços do sistema")
+	    @ApiResponses(value = {
+			@ApiResponse(
+				code = 200,
+				message = "Success"),
+			@ApiResponse(
+				code = 400,
+				message = "Bad request"),
+			@ApiResponse(
+					code = 401,
+					message = "Unauthorized"),
+			@ApiResponse(
+				code = 404,
+				message = "Not found"),
+	    	@ApiResponse(
+				code = 500,
+				message = "Internal error")
+	    })
 	public VendaPaginadorDTO getlist(
 			@DefaultValue("0")
 			@QueryParam("currentPage")

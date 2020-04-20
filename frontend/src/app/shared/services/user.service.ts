@@ -37,7 +37,7 @@ export class UserService {
   }
 
   getAuth() {
-    return this.http.get<ResponseDTO>(`${environment.urlbase}${PATH.usuario}`, {});
+    return this.http.get<ResponseDTO>(`${environment.urlbase}${PATH.usuario}/get-dados`, {});
   }
 
   update(user: UserDTO) {

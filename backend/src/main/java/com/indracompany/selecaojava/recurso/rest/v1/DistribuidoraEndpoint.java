@@ -36,23 +36,23 @@ public class DistribuidoraEndpoint implements Endpoint {
 	@ApiOperation(
 		value = "Listar ditribuidoras no formato options",
 		notes = "Listar ditribuidoras no formato options do sistema")
-    @ApiResponses(value = {
-		@ApiResponse(
-			code = 200,
-			message = "Success"),
-		@ApiResponse(
-			code = 400,
-			message = "Bad request"),
-		@ApiResponse(
-				code = 401,
-				message = "Unauthorized"),
-		@ApiResponse(
-			code = 404,
-			message = "Not found"),
-    	@ApiResponse(
-			code = 500,
-			message = "Internal error")
-    })
+	    @ApiResponses(value = {
+			@ApiResponse(
+				code = 200,
+				message = "Success"),
+			@ApiResponse(
+				code = 400,
+				message = "Bad request"),
+			@ApiResponse(
+					code = 401,
+					message = "Unauthorized"),
+			@ApiResponse(
+				code = 404,
+				message = "Not found"),
+	    	@ApiResponse(
+				code = 500,
+				message = "Internal error")
+	    })
 	public List<OptionDTO> listarOptions() {
 		return this.service.listarOptions();
 	}

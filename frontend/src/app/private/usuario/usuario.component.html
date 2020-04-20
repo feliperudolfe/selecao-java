@@ -1,0 +1,77 @@
+<div>
+
+	<h2 class="mt-5 title-page">
+		<span class="title-span">{{'private.usuario.title' | translate}}</span>
+	</h2>
+
+	<div class="row" *ngIf="usuario" >
+
+		<div class="col-md-6">
+			<label>{{'private.usuario.email' | translate}}:</label>
+			<p class="text-left">{{usuario.email}}</p>
+		</div>
+
+		<div class="col-md-4">
+			<label>
+				{{'private.usuario.senha' | translate}}:
+				<a href="#" onclick="return false;" title="{{'button.edit' | translate}}" data-toggle="modal" data-target="#editar-senha-modal" (click)="limparSenha()" >
+                    <i class="fas fa-edit"></i>
+                </a>
+			</label>
+			<p class="text-left">***********</p>
+		</div>
+
+	</div>
+
+	<!-- Modal - importar-csv-modal -->
+    <div class="modal fade" data-backdrop="static" id="editar-senha-modal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">{{'private.modal.usuario.alterar-senha' | translate}}</h4>
+            <button type="button" (click)="limparSenha()" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+
+			<div class="modal-body" style="min-height: 320px;">
+
+				<div class="col-md-3">
+					<label>{{'private.usuario.nova-senha' | translate}}:</label>
+					<div class="input-group input-group-sm mb-3" >
+						<input type="password" id="newPassword" [(ngModel)]="usuario.password" class="form-control" autofocus>
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<label for="confirmPassword">
+						{{'private.usuario.confirmar-senha' | translate}}:
+					</label>
+					<div class="input-group input-group-sm mb-3">
+						<input type="password" id="confirmPassword" [(ngModel)]="usuario.confirmPassword" class="form-control" autofocus>
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<label for="currentPassword">
+						{{'private.usuario.senha-atual' | translate}}:
+					</label>
+					<div class="input-group input-group-sm mb-3">
+						<input type="password" id="currentPassword" [(ngModel)]="usuario.currentPassword" class="form-control" autofocus>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- Modal footer -->
+			<div class="modal-footer">
+				<button class="btn btn-primary float-right" (click)="salvarSenha()" type="button" >{{(user) ? ('button.save' | translate) : ('button.register' | translate)}}</button>
+				<button id="alterar-senha-fechar-btn" type="button" (click)="limparSenha()" class="btn btn-danger" data-dismiss="modal">{{'button.close' | translate}}</button>
+			</div>
+
+        </div>
+      </div>
+	</div>
+	<!-- Modal - importar-csv-modal - END -->
+
+</div>

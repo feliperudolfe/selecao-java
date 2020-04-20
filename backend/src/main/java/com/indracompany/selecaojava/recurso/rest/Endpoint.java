@@ -14,4 +14,9 @@ public interface Endpoint {
 		return ResponseEntity.ok(resposta);
 	}
 
+	public default ResponseEntity<Resposta> criarRespostaData(Object data) {
+		Resposta resposta = new Resposta();
+		resposta.setData(data);
+		return ResponseEntity.ok(resposta);
+	}
 }

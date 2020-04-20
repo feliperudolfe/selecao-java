@@ -69,7 +69,7 @@ public class VendaEndpoint implements Endpoint {
 
 		VendaDTO venda = this.service.obterPorCodigo(codigo);
 
-		return criarResposta(new Resposta(venda));
+		return criarRespostaData(venda);
 	}
 
 	@PutMapping(path = "/{codigo:[1-9][0-9]*}")

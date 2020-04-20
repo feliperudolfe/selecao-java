@@ -4,7 +4,7 @@
 
 		<span class="title-span">{{'private.historico.title' | translate}}</span>
 
-		<button title="{{'button.upload' | translate}}" type="button" class="btn btn-primary btn-circle btn-sm">
+		<button title="{{'button.upload' | translate}}" type="button" data-toggle="modal"  data-target="#importar-csv-modal" class="btn btn-primary btn-circle btn-sm">
 			<i class="fas fa-upload"></i>
 		</button>
 
@@ -89,7 +89,7 @@
 
 	</div>
 
-	<!-- The Modal -->
+	<!-- Modal - venda-visualizar-modal -->
     <div class="modal fade" data-backdrop="static" id="venda-visualizar-modal">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -97,7 +97,7 @@
           <!-- Modal Header -->
           <div class="modal-header">
             <h4 class="modal-title">{{'private.modal.venda.visualizar' | translate}}</h4>
-            <button id="venda-visualizar-modalr" type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
 
           <!-- Modal body -->
@@ -194,12 +194,40 @@
 
           <!-- Modal footer -->
           <div class="modal-footer">
-            <button type="button" (click)="cancelAddCollaborator()" class="btn btn-primary"
-              data-dismiss="modal">{{'button.close' | translate}}</button>
+            <button type="button" (click)="limparVenda()" class="btn btn-primary" data-dismiss="modal">{{'button.close' | translate}}</button>
           </div>
 
         </div>
       </div>
-    </div>
+	</div>
+	<!-- Modal - venda-visualizar-modal - END -->
+
+	<!-- Modal - importar-csv-modal -->
+    <div class="modal fade" data-backdrop="static" id="importar-csv-modal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">{{'private.upload-arquivo.title' | translate}}</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+
+			<div class="modal-body" style="min-height: 320px;">
+
+				<input type="file" id="customFile" accept=".csv" (change)="fileProgress($event)">
+				<button class="btn btn-primary" [disabled]="!previewUrl" (click)="upload()">SaveFile</button>
+
+			</div>
+
+			<!-- Modal footer -->
+			<div class="modal-footer">
+				<button id="importar-csv-btn" type="button" (click)="limparVenda()" class="btn btn-primary" data-dismiss="modal">{{'button.close' | translate}}</button>
+			</div>
+
+        </div>
+      </div>
+	</div>
+	<!-- Modal - importar-csv-modal - END -->
 
 </div>

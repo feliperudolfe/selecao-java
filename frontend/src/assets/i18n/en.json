@@ -94,6 +94,10 @@
         "registros": "registers"
       }
     },
+    "upload-arquivo": {
+      "title": "File upload",
+      "campo": "CSV file"
+    },
     "venda": {
         "title": "Sale",
         "dataColeta": "Collection Date",

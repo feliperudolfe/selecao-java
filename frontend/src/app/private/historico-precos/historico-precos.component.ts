@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HistoricoPrecoService } from 'src/app/shared/services/historico-preco.service';
 import { HistoricoPrecoPaginatorDTO } from 'src/app/shared/model/venda.paginator.dto';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
@@ -8,6 +8,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { MsgService } from 'src/app/shared/services/msg.service';
 import { VendaService } from 'src/app/shared/services/venda.service';
 import { MessageDTO } from 'src/app/shared/model/message.dto';
+import { ImportacaoArquivoService } from 'src/app/shared/services/importacao-arquivo.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-historico-precos',
@@ -18,14 +20,18 @@ export class HistoricoPrecosComponent implements OnInit {
 
   paginator: HistoricoPrecoPaginatorDTO;
   venda: VendaDTO
+  fileData: File = null;
+  previewUrl: any = null;
+  fileUploadProgress: string = null;
+  uploadedFilePath: string = null;
 
   constructor(
     private msg: MsgService,
-    private route: Router,
     private location: Location,
     private router: ActivatedRoute,
     private translate: TranslateService,
     private vendaService: VendaService,
+    private importacaoArquivoService: ImportacaoArquivoService,
     private historicoPrecoService: HistoricoPrecoService) { }
 
   ngOnInit() {
@@ -42,8 +48,45 @@ export class HistoricoPrecosComponent implements OnInit {
     this.doPaginator();
   }
 
+  fileProgress(fileInput: any) {
+    this.fileData = <File>fileInput.target.files[0];
+    this.preview();
+  }
+
+  preview() {
+
+    const mimeType = this.fileData.type;
+    if (mimeType.match(/vnd.ms-excel\/*/) == null) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(this.fileData);
+    reader.onload = (_event) => {
+      this.previewUrl = reader.result;
+    }
+  }
+
+  upload() {
+    this.importacaoArquivoService.importarBase64CSV(this.previewUrl)
+      .subscribe((response) => {
+        this.msg.show(response.messages[0]).then(() => {
+          $('#importar-csv-btn').click();
+          this.previewUrl = null;
+          this.ngOnInit();
+        });
+      },
+      (response) => {
+        this.msg.show(response.error.messages[0]);
+      });
+  }
+
   visualizarVenda(item: VendaDTO) {
     this.venda = item;
+  }
+
+  limparVenda() {
+    this.venda = undefined;
   }
 
   removerVenda(codigo: number) {

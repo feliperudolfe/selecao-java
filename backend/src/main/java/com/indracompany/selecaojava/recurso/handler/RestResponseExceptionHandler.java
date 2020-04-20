@@ -16,6 +16,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.indracompany.comuns.modelo.dto.Mensagem;
@@ -80,6 +81,14 @@ public class RestResponseExceptionHandler extends ResponseEntityExceptionHandler
 		LOG.error(ex.getMessage(), ex);
 
 		return super.handleHttpMessageNotReadable(ex, headers, status, request);
+	}
+
+	@Override
+	protected ResponseEntity<Object> handleMissingServletRequestPart(MissingServletRequestPartException ex,
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
+
+		Resposta resposta = new Resposta(new Mensagem(Mensagem.ALERTA, ex.getMessage()));
+		return handleExceptionInternal(ex, resposta, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 
 	private ResponseEntity<Object> tratarMissingServletRequestParameterException(

@@ -7,6 +7,7 @@ import { HistoricoPrecoService } from './historico-preco.service';
 import { VendaService } from './venda.service';
 import { ProdutoService } from './produto.service';
 import { DistribuidoraService } from './distribuidora.service';
+import { ImportacaoArquivoService } from './importacao-arquivo.service';
 
 
 
@@ -22,7 +23,8 @@ import { DistribuidoraService } from './distribuidora.service';
     HistoricoPrecoService,
     VendaService,
     ProdutoService,
-    DistribuidoraService
+    DistribuidoraService,
+    ImportacaoArquivoService
   ]
 })
 export class ServicesModule { }

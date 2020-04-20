@@ -94,6 +94,10 @@
         "registros": "registros"
       }
     },
+    "upload-arquivo": {
+      "title": "Upload de arquivo",
+      "campo": "Arquivo CSV"
+    },
     "venda": {
       "title": "Venda",
       "dataColeta": "Data de Coleta",

@@ -98,7 +98,7 @@ public class UsuarioEndpoint implements Endpoint {
 
 		Usuario user = this.service.buscarPorToken(token);
 
-		return criarResposta(new Resposta(UsuarioMapper.toDTO(user)));
+		return criarRespostaData(UsuarioMapper.toDTO(user));
 	}
 
 }

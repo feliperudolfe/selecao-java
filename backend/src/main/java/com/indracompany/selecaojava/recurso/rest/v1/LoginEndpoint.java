@@ -64,7 +64,7 @@ public class LoginEndpoint implements Endpoint {
 		String token = this.service.efetuarLogin(credentials.getUsername(), credentials.getPassword());
 		servletResponse.setHeader(HttpHeaders.SET_COOKIE, token);
 
-		return criarResposta(new Resposta(Boolean.TRUE));
+		return criarRespostaData(Boolean.TRUE);
 	}
 
 }

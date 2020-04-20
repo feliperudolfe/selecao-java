@@ -103,8 +103,9 @@ export class EditarVendaComponent implements OnInit {
         if (result.value) {
           this.vendaService.atualizar(venda)
             .subscribe((response) => {
-              this.router.navigate(['private/historico-precos']);
-              this.msg.show(response.messages[0]);
+              this.msg.show(response.messages[0]).then(() => {
+                this.router.navigate(['private/historico-precos']);
+              });
             });
         }
       });

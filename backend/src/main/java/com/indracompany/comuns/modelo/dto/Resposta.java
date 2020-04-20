@@ -18,9 +18,7 @@ public class Resposta implements Serializable {
 	private Object data;
 	private List<Mensagem> messages;
 
-	public Resposta(Object data) {
-		this.data = data;
-	}
+	public Resposta() {	}
 
 	public Resposta(List<Mensagem> mensagens) {
 		this.messages = mensagens;

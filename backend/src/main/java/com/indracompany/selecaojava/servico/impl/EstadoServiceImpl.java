@@ -23,8 +23,12 @@ public class EstadoServiceImpl implements EstadoService {
 
 	private static final Logger LOG = LoggerFactory.getLogger(EstadoServiceImpl.class);
 
+	private final EstadoRepository repository;
+
 	@Autowired
-	private EstadoRepository repository;
+	public EstadoServiceImpl(EstadoRepository repository) {
+		this.repository = repository;
+	}
 
 	@Override
 	public Estado salvar(Estado estado) {

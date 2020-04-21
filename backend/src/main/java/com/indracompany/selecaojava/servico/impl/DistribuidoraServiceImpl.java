@@ -28,11 +28,15 @@ public class DistribuidoraServiceImpl implements DistribuidoraService {
 
 	private static final Logger LOG = LoggerFactory.getLogger(DistribuidoraServiceImpl.class);
 
-	@Autowired
-	private DistribuidoraRepository repository;
+	private final DistribuidoraRepository repository;
+
+	private final MunicipioService municipioService;
 
 	@Autowired
-	private MunicipioService municipioService;
+	public DistribuidoraServiceImpl(DistribuidoraRepository repository, MunicipioService municipioService) {
+		this.repository = repository;
+		this.municipioService = municipioService;
+	}
 
 	@Override
 	public Distribuidora salvar(Distribuidora distribuidora) {

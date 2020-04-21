@@ -26,8 +26,8 @@ public class DistribuidoraMapper {
 		retorno.setNome(linha.get(NOME_REVENDEDORA_LINHA));
 		retorno.setMunicipio(MunicipioMapper.toEntidade(cont, linha));
 
-		Assert.notNull(retorno.getCnpj(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "CNJP da distribuidora"));
-		Assert.notNull(retorno.getNome(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "Nome da distribuidora"));
+		Assert.hasText(retorno.getCnpj(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "CNJP da distribuidora"));
+		Assert.hasText(retorno.getNome(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "Nome da distribuidora"));
 		Assert.notNull(retorno.getMunicipio(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "Município"));
 
 		return retorno;

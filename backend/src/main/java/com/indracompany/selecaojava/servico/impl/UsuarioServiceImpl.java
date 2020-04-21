@@ -31,8 +31,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	private static final Logger LOG = LoggerFactory.getLogger(UsuarioServiceImpl.class);
 
+	private final UsuarioRepository repository;
+
 	@Autowired
-	private UsuarioRepository repository;
+	public UsuarioServiceImpl(UsuarioRepository repository) {
+		this.repository = repository;
+	}
 
 	@Override
 	public String efetuarLogin(String email, String senha) {
@@ -138,10 +142,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 		try {
 
 			Usuario userAtual = this.buscarPorToken(token);
-			if (ObjectUtil.isNull(userAtual)) {
-				throw new NegocioException(Mensagem.ALERTA, Msg.get(MsgEnum.MSG004));
-			}
-
 			if (!usuario.getSenha().equals(usuario.getConfirmarSenha())) {
 				throw new NegocioException(Mensagem.ALERTA, Msg.get(MsgEnum.MSG005));
 			}

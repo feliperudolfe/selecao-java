@@ -28,11 +28,15 @@ public class ProdutoServiceImpl implements ProdutoService {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ProdutoServiceImpl.class);
 
-	@Autowired
-	private ProdutoRepository repository;
+	private final ProdutoRepository repository;
+
+	private final BandeiraService bandeiraService;
 
 	@Autowired
-	private BandeiraService bandeiraService;
+	public ProdutoServiceImpl(ProdutoRepository repository, BandeiraService bandeiraService) {
+		this.repository = repository;
+		this.bandeiraService = bandeiraService;
+	}
 
 	@Override
 	public Produto salvar(Produto produto) {

@@ -23,6 +23,17 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<sonar.coverage.exclusions>
+			**/indracompany.comuns/**,
+			**/indracompany.selecaojava.app/**,
+			**/indracompany.selecaojava.persistencia/**,
+			**/indracompany.selecaojava.recurso/**,
+			**/indracompany.selecaojava.app/**,
+			**/indracompany.selecaojava.app/**,
+		</sonar.coverage.exclusions>
+		<sonar.cpd.exclusions>
+			**/indracompany.selecaojava.persistencia.modelo/**
+		</sonar.cpd.exclusions>
 	</properties>
 
 	<dependencies>
@@ -127,6 +138,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
 
 	</dependencies>

@@ -16,10 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.indracompany.comuns.modelo.dto.Mensagem;
 import com.indracompany.comuns.tratamento.NegocioException;
 import com.indracompany.comuns.util.CsvUtil;
-import com.indracompany.comuns.util.ObjectUtil;
 import com.indracompany.selecaojava.app.config.FileStorageProperties;
 import com.indracompany.selecaojava.app.mensagem.Msg;
 import com.indracompany.selecaojava.app.mensagem.MsgEnum;
@@ -39,19 +37,19 @@ public class ImportacaoServiceImpl implements ImportacaoService {
 
 	private final Path fileStorageLocation;
 
-	@Autowired
-	private VendaService vendaService;
+	private final VendaService vendaService;
 
 	@Autowired
-    public ImportacaoServiceImpl(FileStorageProperties fileStorageProperties) {
-
-		this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir()).toAbsolutePath().normalize();
+    public ImportacaoServiceImpl(VendaService vendaService, FileStorageProperties fileStorageProperties) {
 
         try {
 
+        	this.vendaService = vendaService;
+        	this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir()).toAbsolutePath().normalize();
+
             Files.createDirectories(this.fileStorageLocation);
 
-        } catch (Exception ex) {
+        } catch (Throwable ex) {
         	LOG.error(ex.getMessage(), ex);
             throw new WebApplicationException("Não foi possível criar o diretório em que os arquivos enviados serão armazenados.");
         }
@@ -89,11 +87,6 @@ public class ImportacaoServiceImpl implements ImportacaoService {
 		try {
 
 			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-
-			if (ObjectUtil.isNullOrEmpty(fileName) || !fileName.endsWith(".csv")) {
-				throw new NegocioException(Mensagem.ALERTA, Msg.get(MsgEnum.MSG001));
-			}
-
 			Path path = this.fileStorageLocation.resolve(fileName);
 			Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 			retorno = CsvUtil.ler(file);

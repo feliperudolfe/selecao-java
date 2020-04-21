@@ -23,8 +23,12 @@ public class BandeiraServiceImpl implements BandeiraService {
 
 	private static final Logger LOG = LoggerFactory.getLogger(BandeiraServiceImpl.class);
 
+	private final BandeiraRepository repository;
+
 	@Autowired
-	private BandeiraRepository repository;
+	public BandeiraServiceImpl(BandeiraRepository repository) {
+		this.repository = repository;
+	}
 
 	@Override
 	public Bandeira salvar(Bandeira bandeira) {

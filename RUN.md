@@ -1,7 +1,5 @@
 # Execução do projeto
 
-A execução deste projeto pode ser feita de duas formas
-
 **OBS:** 
 * Você deve ter o `Node JS` instalado em sua máquina;
 * Você deve ter o `Apache Maven` instalado em sua máquina;

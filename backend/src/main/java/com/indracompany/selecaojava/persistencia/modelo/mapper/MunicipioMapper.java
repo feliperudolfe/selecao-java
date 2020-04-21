@@ -24,7 +24,7 @@ public class MunicipioMapper {
 		retorno.setNome(linha.get(NOME_MUNICIPIO_LINHA));
 		retorno.setUf(EstadoMapper.toEntidade(cont, linha));
 
-		Assert.notNull(retorno.getNome(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "Nome do município"));
+		Assert.hasText(retorno.getNome(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "Nome do município"));
 		Assert.notNull(retorno.getUf(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "UF"));
 
 		return retorno;

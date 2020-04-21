@@ -25,11 +25,15 @@ public class MunicipioServiceImpl implements MunicipioService {
 
 	private static final Logger LOG = LoggerFactory.getLogger(MunicipioServiceImpl.class);
 
-	@Autowired
-	private MunicipioRepository repository;
+	private final MunicipioRepository repository;
+
+	private final EstadoService estadoService;
 
 	@Autowired
-	private EstadoService estadoService;
+	public MunicipioServiceImpl(MunicipioRepository repository, EstadoService estadoService) {
+		this.repository = repository;
+		this.estadoService = estadoService;
+	}
 
 	@Override
 	public Municipio salvar(Municipio municipio) {

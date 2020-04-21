@@ -87,6 +87,8 @@ public class ImportacaoEndpoint implements Endpoint {
 	    })
 	public ResponseEntity<Resposta> carregarBase64CSV(@RequestParam("file") String base64) {
 
+		System.out.println(base64);
+
 		this.service.carregarArquivoCSV(new Base64CsvMultipartFile(base64));
 
 		return criarResposta(new Resposta(new Mensagem(Mensagem.SUCESSO, Msg.get(MsgEnum.MSG003))));

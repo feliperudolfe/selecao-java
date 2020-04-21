@@ -35,17 +35,23 @@ public class VendaServiceImpl implements VendaService {
 
 	private static final Logger LOG = LoggerFactory.getLogger(VendaServiceImpl.class);
 
-	@Autowired
-	private VendaRepository repository;
+	private final VendaRepository repository;
+
+	private final VendaDAO dao;
+
+	private final ProdutoService produtoService;
+
+	private final DistribuidoraService distribuidoraService;
 
 	@Autowired
-	private VendaDAO dao;
+	public VendaServiceImpl(VendaRepository repository, VendaDAO dao, ProdutoService produtoService,
+			DistribuidoraService distribuidoraService) {
 
-	@Autowired
-	private ProdutoService produtoService;
-
-	@Autowired
-	private DistribuidoraService distribuidoraService;
+		this.repository = repository;
+		this.dao = dao;
+		this.produtoService = produtoService;
+		this.distribuidoraService = distribuidoraService;
+	}
 
 	@Override
 	public Venda salvar(Venda venda) {
@@ -87,9 +93,6 @@ public class VendaServiceImpl implements VendaService {
 		} catch (NegocioException e) {
 			LOG.info("Ocorreu um erro durante as inserções das informações das vendas obtidas em arquivo CSV");
 			throw e;
-		} catch (Exception e) {
-			LOG.error(e.getMessage(), e);
-			throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO));
 		}
 	}
 
@@ -101,9 +104,6 @@ public class VendaServiceImpl implements VendaService {
 			paginator = this.dao.listar(paginator);
 
 		} catch (PersistenceException e) {
-			LOG.error(e.getMessage(), e);
-			throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO));
-		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
 			throw new NegocioException(Msg.get(MsgEnum.MSG_ERRO_PADRAO));
 		}

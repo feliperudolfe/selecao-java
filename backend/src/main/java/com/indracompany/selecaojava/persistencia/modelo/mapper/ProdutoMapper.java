@@ -27,7 +27,7 @@ public class ProdutoMapper {
 		retorno.setUnidadeMedida(UnidadeMedidaEnum.getPorNome(linha.get(UNIDADE_MEDIDA_LINHA)));
 		retorno.setBandeira(BandeiraMapper.toEntidade(cont, linha));
 
-		Assert.notNull(retorno.getNome(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "Nome do produto"));
+		Assert.hasText(retorno.getNome(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "Nome do produto"));
 		Assert.notNull(retorno.getUnidadeMedida(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "Unidade de medida"));
 		Assert.notNull(retorno.getBandeira(), Msg.get(MsgEnum.MSG_IMP_CSV, cont, "Bandeira"));
 

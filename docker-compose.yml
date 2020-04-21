@@ -1,0 +1,59 @@
+version: "3.7"
+services:
+
+    mysql-server:
+        container_name:             mysql-server
+        image:                      mysql/mysql-server:5.7.26
+        restart:                    always
+        ports:
+            - "3307:3306"
+        volumes:
+            - ./ambiente-dockenizado/sql-server/data:/var/opt/mssql/data
+        environment:
+            HOSTNAME:               mysql-server
+            MYSQL_ROOT_HOST:        '%'
+            MYSQL_ROOT_PASSWORD:    root
+            MYSQL_DATABASE:         indra_selecao
+            MYSQL_USER:             user
+            MYSQL_PASSWORD:         pass
+        networks:
+            - indra-nwk
+            
+    indra-frontend:
+        container_name:             indra-frontend
+        image:                      frontend:0.0.1
+        restart:                    always
+        ports:
+            - "8082:80"
+        environment:
+            BACKEND_ADDRESS: http://localhost:8081
+        networks:
+            - indra-nwk
+
+    indra-backend:
+        container_name:             indra-backend
+        image:                      backend:0.0.1
+        restart:                    always
+        ports:
+            - "8081:8080"
+        depends_on:
+            - mysql-server
+        environment:
+            HOSTNAME:               indra-backend
+            MINIO_ADDRESS:          http://localhost
+            MINIO_PORT:             9001
+            MINIO_USERNAME:         admin
+            MINIO_PASSWORD:         adminpass
+            MINIO_BUCKET:           indrabucket
+            SPRING_DATASOURCE_URL:  jdbc:mysql://mysql-server:3306/indra_selecao?useSSL=false
+            SPRING_DATASOURCE_USERNAME:  root
+            SPRING_DATASOURCE_PASSWORD:  root
+            SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.jdbc.Driver
+            SPRING_JPA_DATABASE_PLATFORM:   org.hibernate.dialect.MySQL5InnoDBDialect
+        networks:
+            - indra-nwk
+
+networks:
+    indra-nwk:
+        external: true
+        driver: host

@@ -738,6 +738,35 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Importar arquivo CSV",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/ctis/Desktop/arquivo.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/importacoes/carregar",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"importacoes",
+						"carregar"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
